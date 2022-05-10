@@ -1,11 +1,10 @@
 import * as me from 'https://esm.run/melonjs';
-import resourceHolder from '../../index.js';
-
+import gameController from '../../index.js';
 
 export class ButtonUI extends me.GUI_Object {
     constructor(x, y, label, color) {
         super(x, y, {
-            image: resourceHolder.texture,
+            image: gameController.texture,
             region: color + "_button06"
         });
         this.label = label;
