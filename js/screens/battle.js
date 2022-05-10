@@ -14,10 +14,7 @@ class BattleScreen extends me.Stage {
         );
 
         var buttonList = [
-            new ButtonUI(0,0),
-            // new ButtonUI(-buttonRef.width,0),
-            // new ButtonUI(-buttonRef.width,-buttonRef.height),
-            // new ButtonUI(0,-buttonRef.height),
+            new ButtonUI(-100,-100, "TestingButton", "blue")
         ];
         for (var button in buttonList) {
             panel.addChild(buttonList[button]);
@@ -25,20 +22,6 @@ class BattleScreen extends me.Stage {
 
         me.game.world.addChild(panel, 1);
     }
-
-    // onResetEvent() {
-    //     me.game.world.addChild(new me.ColorLayer("background", "#202020"));
-
-    //     // add a font text display object
-    //     me.game.world.addChild(new me.Text(609, 281, {
-    //         font: "Arial",
-    //         size: 160,
-    //         fillStyle: "#FFFFFF",
-    //         textBaseline : "middle",
-    //         textAlign : "center",
-    //         text : "Hello World !"
-    //     }));
-    // }
 }
 
 export default BattleScreen;
