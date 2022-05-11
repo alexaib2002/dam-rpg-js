@@ -1,5 +1,5 @@
 import * as me from 'https://esm.run/melonjs';
-import gameController from '../../index.js';
+import gameController from '/index.js';
 
 export class ButtonUI extends me.GUI_Object {
 

@@ -5,7 +5,9 @@ import { ButtonUI } from '../entities/buttons.js';
 class BattleScreen extends me.Stage {
 
     onResetEvent() {
-        let backgroundImage = new me.Sprite(me.game.viewport.width / 2, me.game.viewport.height / 2, {
+        let backgroundImage = new me.Sprite(
+            me.game.viewport.width / 2, me.game.viewport.height / 2,
+            {
                 image: me.loader.getImage("battle-bg"),
             }
         );
