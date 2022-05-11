@@ -18,7 +18,7 @@ export class ButtonUI extends me.GUI_Object {
 
         this.font = new me.Text(0, 0 ,{
             font: "kenpixel",
-            size: 12,
+            size: 14,
             fillStyle: "black",
             textAlign: "center",
             textBaseline: "middle",

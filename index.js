@@ -9,7 +9,7 @@ me.device.onReady(function() {
 
 var gameController = {
     onload: function () {
-        if (!me.video.init(800, 600, {
+        if (!me.video.init(1040, 780, {
             parent : "screen",
             scale : "auto",
             // scaleMethod : "flex-width", // determines if viewport is scaled with browser window

@@ -3,6 +3,7 @@ const DataManifest = [
     { name: "UI_Assets-0", type: "image", src: "../src/img/UI_Assets-0.png" },
     { name: "UI_Assets-1", type: "image", src: "../src/img/UI_Assets-1.png" },
     { name: "UI_Assets-2", type: "image", src: "../src/img/UI_Assets-2.png" },
+    { name: "battle-bg", type: "image", src: "../src/img/background.jpeg" },
 
     // JSON texturePacker Atlas
     { name: "UI_Assets-0", type: "json", src: "../src/img/UI_Assets-0.json" },
