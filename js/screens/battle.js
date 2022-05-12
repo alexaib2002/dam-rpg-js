@@ -30,6 +30,13 @@ class BattleScreen extends me.Stage {
         panel.addChild(new ButtonUI(720, 40, "red", "Esc"));
 
         me.game.world.addChild(panel, 1);
+
+        this.initEnemies();
+    }
+
+    initEnemies() {
+        let placeholder_enemy = me.loader.getJSON("EnemyDefinition").enemy_00;
+        console.log(`A wild ${placeholder_enemy.name} attacks!!`)
     }
 }
 
