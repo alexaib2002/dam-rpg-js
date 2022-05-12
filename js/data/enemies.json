@@ -19,7 +19,7 @@
         "name": "Skeleton",
         "health": 75,
         "attacks": [
-            "Cut",
+            "cut"
         ]
   },
 
@@ -27,7 +27,7 @@
         "name": "Goblin",
         "health": 50,
         "attacks": [
-            "punch",
+            "punch"
         ]
     },
 
