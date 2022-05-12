@@ -1,0 +1,56 @@
+{
+    "enemy_00": {
+      "name": "Zombie",
+      "health": 100,
+      "attacks": [
+        "bash",
+        "kick"
+      ]
+    },
+    "enemy_01": {
+      "name": "Slime",
+      "health": 45,
+      "attacks": [
+        "bash"
+      ]
+    },
+
+    "enemy_02": {
+        "name": "Skeleton",
+        "health": 75,
+        "attacks": [
+            "Cut",
+        ]
+  },
+
+    "enemy_03": {
+        "name": "Goblin",
+        "health": 50,
+        "attacks": [
+            "punch",
+        ]
+    },
+
+    "enemy_04": {
+        "name": "Armored Zombie",
+        "health": 150,
+        "attacks": [
+            "bash",
+            "kick",
+            "slash"
+        ]
+    },
+
+    "enemy_05": {
+        "name": "Acid Slime",
+        "health": 70,
+        "attacks": [
+            "spit",
+            "bash"
+        ]
+    }
+
+  
+
+
+
