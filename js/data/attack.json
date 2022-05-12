@@ -30,5 +30,10 @@
     "spit": {
         "name": "Acid Spit",
         "description": "%s did a spit!!"
+    },
+    
+    "Shoot": {
+        "name": "Shoot",
+        "description": "%s shoot an arrow!!"
 
 }

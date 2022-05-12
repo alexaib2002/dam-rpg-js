@@ -48,7 +48,30 @@
             "spit",
             "bash"
         ]
+    },
+
+    "enemy_06": {
+        "name": "Skeleton Archer",
+        "health": 100,
+        "attacks": [
+            "shoot",
+            "bash"
+        ]
+    },
+
+    "enemy_07": {
+        "name": "Forest defender",
+        "health": 300,
+        "attacks": [
+            "bash",
+            "kick",
+            "slash",
+            "spit"
+        ]
     }
+}
+
+
 
   
 
