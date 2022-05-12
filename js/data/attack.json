@@ -1,0 +1,20 @@
+{
+    "bash": {
+      "name": "Bash",
+      "description": "%s is suddenly bashes you!!"
+    },
+    "kick": {
+      "name": "Kick",
+      "description": "%s did a quick kick!!"
+    },
+    "none": {
+      "name": "No attack",
+      "description": "%s did nothing to defend itself!!"
+    },
+
+    "punch": {
+        "name": "Punch",
+        "description": "%s did a punch!!"
+    }
+
+}
