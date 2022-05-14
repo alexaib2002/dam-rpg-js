@@ -2,28 +2,81 @@
 const GAME_OVER = 1;
 const GAME_WIN = 0;
 
-function attack(player, enemy) {
-    // if the enemy is dead, notify enemy is dead and return GAME_WIN
+function attack(attacker, defender) {
+    
+    // if the defender is dead, notify defender is dead and return GAME_WIN
 
-    if (enemy.health <= 0) {
-        console.log(`${enemy.name} is dead!`);
+    if (defender.health <= 0) {
+        console.log(`${defender.name} is dead!`);
         return GAME_WIN;
     }
-    // if the player is dead, notify player is dead and return GAME_OVER
-    if (player.health <= 0) {
-        console.log(`${player.name} is dead!`);
+    // if the attacker is dead, notify attacker is dead and return GAME_OVER
+    if (attacker.health <= 0) {
+        console.log(`${attacker.name} is dead!`);
         return GAME_OVER;
 
     }
-    // if the player is not dead, attack the enemy
-    enemy.health -= player.attacks;
-    // if the enemy is dead, return GAME_WIN
-    if (enemy.health <= 0) {
-        console.log(`${enemy.name} is dead!`);
+    // if the attacker is not dead, attack the defender
+    defender.health -= attacker.attacks;
+    // if the defender is dead, return GAME_WIN
+    if (defender.health <= 0) {
+        console.log(`${defender.name} is dead!`);
         return GAME_WIN;
     }
-    // if the enemy is not dead, attack the player
-    player.health -= enemy.attacks;
-}
+    // if the defender is not dead, attack the attacker
+    attacker.health -= defender.attacks;
+};
+
+function defend(attacker, defender) {
+   
+    if (defender.health <= 0) {
+        console.log(`${defender.name} is dead!`);
+        return GAME_WIN;
+    }
+    
+    if (attacker.health <= 0) {
+        console.log(`${attacker.name} is dead!`);
+        return GAME_OVER;
+
+    }
+    // if the attacker is not dead, defend the defender
+    defender.health -= attacker.defend;
+    // if the defender is dead, return GAME_WIN
+    if (defender.health <= 0) {
+        console.log(`${defender.name} is dead!`);
+        return GAME_WIN;
+    }
+    // if the defender is not dead, defend the attacker
+    attacker.health -= defender.defend;
+};
 
 
+function healthRecover(attacker, defender) {
+   
+    if (defender.health <= 0) {
+        console.log(`${defender.name} is dead!`);
+        return GAME_WIN;
+    }
+   
+    if (attacker.health <= 0) {
+        console.log(`${attacker.name} is dead!`);
+        return GAME_OVER;
+
+    }
+
+    // if the attacker is not dead, recover the defender
+    defender.health += attacker.healthRecover;
+    // if the defender is dead, return GAME_WIN
+    if (defender.health <= 0) {
+        console.log(`${defender.name} is dead!`);
+        return GAME_WIN;
+    }
+    // if the defender is not dead, recover the attacker
+    attacker.health += defender.healthRecover;
+
+};
+
+
+function escape() {
+    // TODO 
+};
