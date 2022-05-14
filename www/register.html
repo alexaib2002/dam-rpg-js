@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset='utf-8'>
+    <title>RPG Game JS</title>
+    <title>Page Title</title>
+    <meta id='viewport' name='viewport' content='width=device-width, initial-scale=1'>
+    <link rel='stylesheet' type='text/css' media='screen' href='register.css'>
+    <link rel="shortcut icon" href="favicon.png" type="image/x-icon">
+    <script src="index.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet" />
+</head>
+<body>
+
+    <main>
+
+
+        <div class="border-content">
+
+            <div class="reg-menu">
+
+                <div class="game-title">
+                    <h1> RPG ADVENTURE </h1>
+                </div>
+
+                <div class="player-input">
+                    <div class="character">
+                        <img src="/src/sprites/warrior.png" id="warrior" width="250" height="300">
+                    </div>
+                    <div class="form">
+                        <div class="nickname">
+                            <h1> Choose nickname </h1>
+                            <form>
+                                <input type="text" id="nickname" name="Nname"><br>
+                            </form>
+                        </div>
+
+                        <div class="gender">
+                            <h1> Gender </h1>
+                            <!-- JQuery script that change character according to the selected gender -->
+                            <script>
+                                $(document).ready(function () {
+                                    $("input[name='Gender']").change(function () {
+                                        var val = $("input[name='Gender']:checked").val();
+                                        var pic = document.getElementById('warrior');
+                                        if (val == "Female") {
+                                            pic.src = "/src/sprites/woman-warrior.png";
+                                        } else {
+                                            pic.src = "/src/sprites/warrior.png"
+                                        }
+                                    });
+                                });
+                            </script>
+
+                            <form>
+                                <label for="male">Male</label>
+                                <input type="radio" id="male" name="Gender" value="Male" checked>
+                                <label for="female">Female</label>
+                                <input type="radio" id="female" name="Gender" value="Female">
+                            </form>
+                        </div>
+                    </div>
+                </div>
+
+                <a href="">
+                    <div class="start">
+                        <h1> Start </h1>
+                    </div>
+                </a>
+
+            </div>
+
+        </div>
+
+
+
+    </main>
+
+</body>
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
