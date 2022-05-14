@@ -6,6 +6,8 @@ export class BattleEntity {
         this.attacks = attacks;
     }
 
+    
+
     destroy() {
         // TODO Virtual method
     }
