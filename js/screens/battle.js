@@ -1,6 +1,7 @@
 import * as me from 'https://esm.run/melonjs';
 import BattleUIContainer from '../ui/BattleUIContainer.js';
 import { ButtonUI } from '../entities/buttons.js';
+import BattleEntity from '../entities/battleentity.js';
 
 class BattleScreen extends me.Stage {
 
@@ -35,8 +36,10 @@ class BattleScreen extends me.Stage {
     }
 
     initEnemies() {
-        let placeholder_enemy = me.loader.getJSON("EnemyDefinition").enemy_00;
-        console.log(`A wild ${placeholder_enemy.name} attacks!!`)
+        let placeholder_enemy_data = me.loader.getJSON("EnemyDefinition").enemy_00;
+        let enemy = new BattleEntity(placeholder_enemy_data, 10);
+
+        console.log(`A wild ${enemy.name} attacks!!`)
     }
 }
 
