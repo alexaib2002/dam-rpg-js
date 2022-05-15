@@ -28,6 +28,14 @@ var gameController = {
             me.state.set(me.state.PLAY, new BattleScreen());
             me.state.change(me.state.PLAY);
         });
+    },
+    player: {
+        "name": "PlayerName",
+        "level": 1,
+        "exp": 0,
+        "health": 100,
+        "attack": 10,
+        "defense": 10
     }
 }
 export default gameController;
