@@ -27,7 +27,7 @@ var gameController = {
         }
 
         me.loader.preload(DataManifest, () => {
-            this.texture = new me.video.renderer.Texture([
+            this.texture = new me.TextureAtlas([
                 me.loader.getJSON("UI_Assets-0"),
                 me.loader.getJSON("UI_Assets-1"),
                 me.loader.getJSON("UI_Assets-2")
