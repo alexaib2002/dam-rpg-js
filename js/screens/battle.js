@@ -7,12 +7,12 @@ import BattleBehaviours from '/js/entities/battleBehaviour.js';
 
 var enemy // FIXME enemy should be passed from overworld
 
-
 class BattleScreen extends me.Stage {
 
     onResetEvent() {
         this.initUserInterface();
         this.initEnemies();
+        battleController.onload();
     }
 
     initUserInterface() {
@@ -46,12 +46,22 @@ class BattleScreen extends me.Stage {
     initEnemies() {
         let placeholder_enemy_data = me.loader.getJSON("EnemyDefinition").enemy_00;
         enemy = new BattleEntity(placeholder_enemy_data, 10);
-        console.log(`A wild ${enemy.name} attacks!!`)
+        console.log(`A wild ${enemy.name} attacks!!`);
     }
 }
 
 export var battleController = {
+
+    playerTurn: false,
+
+    // battle classes
     battleBehaviours: new BattleBehaviours(),
+
+    onload: function () {
+        console.log("Battle controller has initialized");
+        this.passTurn();
+    },
+
     onActionSelected: function (buttonName) {
         switch (buttonName.toLowerCase()) {
             case "attack":
@@ -84,6 +94,12 @@ export var battleController = {
         console.log("Debugger event:");
         console.log(`Player health: ${gameController.player.health}`);
         console.log(`Enemy health: ${enemy.health}`);
+        this.passTurn();
+    },
+
+    passTurn: function () {
+        this.playerTurn ? this.playerTurn = false : this.playerTurn = true;
+        console.log(`Player turn: ${this.playerTurn}`);
     }
 }
 
