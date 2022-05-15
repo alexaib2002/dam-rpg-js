@@ -48,11 +48,6 @@ class BattleScreen extends me.Stage {
         enemy = new BattleEntity(placeholder_enemy_data, 10);
         console.log(`A wild ${enemy.name} attacks!!`)
     }
-
-    // controller logic
-    attackEntity() {
-        console.log("someone is trying to attack");
-    }
 }
 
 export var battleController = {

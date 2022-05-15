@@ -4,27 +4,14 @@ const GAME_WIN = 0;
 
 class BattleBehaviours {
     attack(attacker, defender) {
-        // if the defender is dead, notify defender is dead and return GAME_WIN
-
+        defender.health -= attacker.attack;
         if (defender.health <= 0) {
             console.log(`${defender.name} is dead!`);
-            return GAME_WIN;
+            return attacker;
         }
-        // if the attacker is dead, notify attacker is dead and return GAME_OVER
-        if (attacker.health <= 0) {
-            console.log(`${attacker.name} is dead!`);
-            return GAME_OVER;
-
-        }
-        // if the attacker is not dead, attack the defender
-        defender.health -= attacker.attacks;
-        // if the defender is dead, return GAME_WIN
-        if (defender.health <= 0) {
-            console.log(`${defender.name} is dead!`);
-            return GAME_WIN;
-        }
+        // FIXME actually, we want this to happen?
         // if the defender is not dead, attack the attacker
-        attacker.health -= defender.attacks;
+        // attacker.health -= defender.attacks;
     };
 
     defend(attacker, defender) {
