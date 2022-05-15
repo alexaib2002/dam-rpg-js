@@ -1,11 +1,21 @@
 import * as me from 'https://esm.run/melonjs';
 import BattleUIContainer from '../ui/BattleUIContainer.js';
 import { ButtonUI } from '../entities/buttons.js';
-import BattleEntity from '../entities/battleentity.js';
+import BattleEntity from '../entities/battleEntity.js';
+import gameController from '../../index.js';
+import BattleBehaviours from '/js/entities/battleBehaviour.js';
+
+var enemy // FIXME enemy should be passed from overworld
+
 
 class BattleScreen extends me.Stage {
 
     onResetEvent() {
+        this.initUserInterface();
+        this.initEnemies();
+    }
+
+    initUserInterface() {
         let backgroundImage = new me.Sprite(
             me.game.viewport.width / 2, me.game.viewport.height / 2,
             {
@@ -31,15 +41,46 @@ class BattleScreen extends me.Stage {
         panel.addChild(new ButtonUI(720, 40, "red", "Esc"));
 
         me.game.world.addChild(panel, 1);
-
-        this.initEnemies();
     }
 
     initEnemies() {
         let placeholder_enemy_data = me.loader.getJSON("EnemyDefinition").enemy_00;
-        let enemy = new BattleEntity(placeholder_enemy_data, 10);
-
+        enemy = new BattleEntity(placeholder_enemy_data, 10);
         console.log(`A wild ${enemy.name} attacks!!`)
+    }
+
+    // controller logic
+    attackEntity() {
+        console.log("someone is trying to attack");
+    }
+}
+
+export var battleController = {
+    battleBehaviours: new BattleBehaviours(),
+    onActionSelected: function (buttonName) {
+        switch (buttonName.toLowerCase()) {
+            case "attack":
+                this.battleBehaviours.attack(
+                    gameController.player, enemy
+                );
+                break;
+            case "defend":
+                this.battleBehaviours.defend(
+                    gameController.player, enemy
+                );
+                break;
+            case "recover":
+                this.battleBehaviours.healthRecover(
+                    gameController.player, enemy
+                );
+                break;
+            case "esc":
+                this.battleBehaviours.flee();
+                break;
+            default:
+                console.log(`${buttonName} action not recognized`);
+                break;
+        }
     }
 }
 
