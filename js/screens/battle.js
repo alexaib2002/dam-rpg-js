@@ -38,7 +38,7 @@ class BattleScreen extends me.Stage {
         panel.addChild(new ButtonUI(90, 40, "blue", "Attack"));
         panel.addChild(new ButtonUI(300, 40, "yellow", "Defend"));
         panel.addChild(new ButtonUI(510, 40, "green", "Recover"));
-        panel.addChild(new ButtonUI(720, 40, "red", "Esc"));
+        panel.addChild(new ButtonUI(720, 40, "red", "Flee"));
 
         me.game.world.addChild(panel, 1);
     }
@@ -47,6 +47,8 @@ class BattleScreen extends me.Stage {
         let placeholder_enemy_data = me.loader.getJSON("EnemyDefinition").enemy_00;
         enemy = new BattleEntity(placeholder_enemy_data, 10);
         console.log(`A wild ${enemy.name} attacks!!`);
+        console.log(enemy);
+        enemyController.onload(enemy);
     }
 }
 
@@ -100,6 +102,35 @@ export var battleController = {
     passTurn: function () {
         this.playerTurn ? this.playerTurn = false : this.playerTurn = true;
         console.log(`Player turn: ${this.playerTurn}`);
+        if (!this.playerTurn) {
+            enemyController.onTurnReceived();
+        }
+    }
+}
+
+var enemyController = {
+    enemy: null,
+
+    onload: function (enemy) {
+        this.enemy = enemy;
+    },
+
+    onTurnReceived: function () {
+        // TODO determine what action enemy should take
+    },
+
+    determineAction: function () {
+        // TODO choose between attack, defend, recover, or flee
+    },
+
+    determineAttack: function () {
+        enemy.attacks.forEach(element => {
+            console.log(element);
+        });
+    },
+    onActionSelected: function (action) {
+        // TODO execute action
+        battleController.passTurn();
     }
 }
 
