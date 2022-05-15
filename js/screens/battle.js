@@ -76,15 +76,15 @@ export var battleController = {
                 break;
             case "defend":
                 this.battleBehaviours.defend(
-                    gameController.player, enemy
+                    gameController.player
                 );
                 break;
             case "recover":
                 this.battleBehaviours.healthRecover(
-                    gameController.player, enemy
+                    gameController.player
                 );
                 break;
-            case "esc":
+            case "flee":
                 this.battleBehaviours.flee();
                 break;
             default:

@@ -1,66 +1,37 @@
 
-const GAME_OVER = 1;
-const GAME_WIN = 0;
+const MAX_DAMAGE = 300;
+const MIN_DAMAGE = 0;
+const HEALTH_RECOVER = 10;
+const DEFENSE_PROTECTION = 5;
+
+const clamp = (value, min, max) => Math.min(Math.max(value, min), max);
+
 
 class BattleBehaviours {
     attack(attacker, defender) {
-        defender.health -= attacker.attack;
+        let damage = attacker.attack - defender.defense;
+        if (defender.hasProtection) {
+            damage -= DEFENSE_PROTECTION
+        }
+        defender.health -= clamp(damage, MIN_DAMAGE, MAX_DAMAGE);
         if (defender.health <= 0) {
             console.log(`${defender.name} is dead!`);
             return attacker;
         }
-        // FIXME actually, we want this to happen?
-        // if the defender is not dead, attack the attacker
-        // attacker.health -= defender.attacks;
+        defender.hasProtection = false;
+        console.log(`${attacker.name} attacked ${defender.name} for ${damage} damage`);
     };
 
-    defend(attacker, defender) {
+    defend(entity) {
 
-        if (defender.health <= 0) {
-            console.log(`${defender.name} is dead!`);
-            return GAME_WIN;
-        }
+        entity.hasProtection = true;
 
-        if (attacker.health <= 0) {
-            console.log(`${attacker.name} is dead!`);
-            return GAME_OVER;
-
-        }
-        // if the attacker is not dead, defend the defender
-        defender.health -= attacker.defend;
-        // if the defender is dead, return GAME_WIN
-        if (defender.health <= 0) {
-            console.log(`${defender.name} is dead!`);
-            return GAME_WIN;
-        }
-        // if the defender is not dead, defend the attacker
-        attacker.health -= defender.defend;
     };
 
 
-    healthRecover(attacker, defender) {
-
-        if (defender.health <= 0) {
-            console.log(`${defender.name} is dead!`);
-            return GAME_WIN;
-        }
-
-        if (attacker.health <= 0) {
-            console.log(`${attacker.name} is dead!`);
-            return GAME_OVER;
-
-        }
-
-        // if the attacker is not dead, recover the defender
-        defender.health += attacker.healthRecover;
-        // if the defender is dead, return GAME_WIN
-        if (defender.health <= 0) {
-            console.log(`${defender.name} is dead!`);
-            return GAME_WIN;
-        }
-        // if the defender is not dead, recover the attacker
-        attacker.health += defender.healthRecover;
-
+    healthRecover(entity) {
+        entity.health += HEALTH_RECOVER;
+        console.log(`${entity.name} recovered ${HEALTH_RECOVER} health`);
     };
 
 

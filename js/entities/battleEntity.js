@@ -1,10 +1,11 @@
 export class BattleEntity {
 
-    constructor(definition, defend) {
+    constructor(definition, defense) {
         this.name = definition.name;
         this.health = definition.health;
         this.attacks = definition.attacks;
-        this.defend = defend;
+        this.defense = defense;
+        this.hasProtection = false;
     }
 
 
