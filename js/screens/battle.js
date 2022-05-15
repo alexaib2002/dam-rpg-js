@@ -60,9 +60,14 @@ export var battleController = {
     onActionSelected: function (buttonName) {
         switch (buttonName.toLowerCase()) {
             case "attack":
-                this.battleBehaviours.attack(
+                let attackResult = this.battleBehaviours.attack(
                     gameController.player, enemy
                 );
+                if (attackResult != null) {
+                    console.log(`You defeated ${attackResult.name}`);
+
+                    me.state.change(gameController.STATE_END, "Player won");
+                }
                 break;
             case "defend":
                 this.battleBehaviours.defend(
@@ -81,6 +86,9 @@ export var battleController = {
                 console.log(`${buttonName} action not recognized`);
                 break;
         }
+        console.log("Debugger event:");
+        console.log(`Player health: ${gameController.player.health}`);
+        console.log(`Enemy health: ${enemy.health}`);
     }
 }
 
