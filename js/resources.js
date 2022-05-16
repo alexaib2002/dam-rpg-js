@@ -13,7 +13,17 @@ const DataManifest = [
     { name: "UI_Assets-1", type: "json", src: "/src/img/UI_Assets-1.json" },
     { name: "UI_Assets-2", type: "json", src: "/src/img/UI_Assets-2.json" },
 
-    { name: "'kenpixel'", type: "fontface",  src: "url('../src/font/kenvector_future.woff2')" }
+    { name: "'kenpixel'", type: "fontface",  src: "url('../src/font/kenvector_future.woff2')" },
+
+    // Sprites for enemies (temporal, will be replaced by texturePacker)
+    { name: "zombie", type: "image", src: "/src/sprites/ingame/zombie.png" },
+    { name: "slime", type: "image", src: "/src/sprites/ingame/slime.png" },
+    { name: "skeleton", type: "image", src: "/src/sprites/ingame/skeleton.png" },
+    { name: "goblin", type: "image", src: "/src/sprites/ingame/goblin.png" },
+    { name: "armored-zombie", type: "image", src: "/src/sprites/ingame/armored-zombie.png" },
+    { name: "acid-slime", type: "image", src: "/src/sprites/ingame/acid-slime.png" },
+    { name: "skeleton-archer", type: "image", src: "/src/sprites/ingame/skeleton-archer.png" },
+    { name: "forest-defender", type: "image", src: "/src/sprites/ingame/forest-defender.png" },
 ];
 
 export default DataManifest;
