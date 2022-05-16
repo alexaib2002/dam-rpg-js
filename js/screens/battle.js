@@ -14,6 +14,13 @@ var availableActions = [
     "flee"
 ]
 
+function logEntitiesHealth() {
+    console.log("------Debugger event:------");
+    console.log(`Player health: ${gameController.player.health}`);
+    console.log(`Enemy health: ${enemy.health}`);
+    console.log("---------------------------");
+}
+
 class BattleScreen extends me.Stage {
 
     onResetEvent() {
@@ -53,7 +60,7 @@ class BattleScreen extends me.Stage {
     initEnemies() {
         let placeholder_enemy_data = me.loader.getJSON("EnemyDefinition").enemy_00;
         enemy = new BattleEntity(placeholder_enemy_data, 10);
-        console.log(`A wild ${enemy.name} attacks!!`);
+        console.log(`BattleScreen: A wild ${enemy.name} attacks!!`);
         console.log(enemy);
         enemyController.onload(enemy);
     }
@@ -67,7 +74,7 @@ export var battleController = {
     battleBehaviours: new BattleBehaviours(),
 
     onload: function () {
-        console.log("Battle controller has initialized");
+        console.log("Battle controller: I have been initialized");
         this.passTurn();
     },
 
@@ -79,7 +86,7 @@ export var battleController = {
                         gameController.player, enemy
                     );
                     if (attackResult != null) {
-                        console.log(`You defeated ${attackResult.name}`);
+                        console.log(`Battle controller: You defeated ${attackResult.name}`);
                         me.state.change(gameController.STATE_END, "Player won");
                     }
                     break;
@@ -97,21 +104,19 @@ export var battleController = {
                     this.battleBehaviours.flee();
                     break;
                 default:
-                    console.log(`${buttonName} action not recognized`);
+                    console.log(`Battle controller: ${buttonName} action not recognized`);
                     break;
             }
-            console.log("------Debugger event:------");
-            console.log(`Player health: ${gameController.player.health}`);
-            console.log(`Enemy health: ${enemy.health}`);
+            logEntitiesHealth();
             this.passTurn();
         } else {
-            console.log("Ignoing action selection, it's not player's turn");
+            console.log("Battle controller: Ignoing action selection, it's not player's turn");
         }
     },
 
     passTurn: function () {
         this.playerTurn ? this.playerTurn = false : this.playerTurn = true;
-        console.log(`Player turn: ${this.playerTurn}`);
+        console.log(`Battle controller: Player turn -> ${this.playerTurn}`);
         if (!this.playerTurn) {
             enemyController.onTurnReceived();
         }
@@ -127,24 +132,25 @@ var enemyController = {
 
     onTurnReceived: function () {
         // TODO determine what action enemy should take
-        console.log("Enemy: I have received the turn");
+        console.log("Enemy controller: Received the turn");
         this.determineAction();
     },
 
     determineAction: function () {
         // TODO choose between attack, defend, recover, or flee
-        console.log("Enemy: I'm determining my action");
-        console.log("Enemy: I have decided");
+        console.log("Enemy controller: I'm determining my action");
+        console.log("Enemy controller: I have decided");
         this.onActionSelected("attack");
     },
 
     determineAttack: function () {
         enemy.attacks.forEach(element => {
-            console.log(element);
+            console.log(`Enemy controller: I'm attacking with ${element.name}`);
         });
     },
     onActionSelected: function (action) {
         // TODO execute action
+        logEntitiesHealth();
         battleController.passTurn();
     }
 }
