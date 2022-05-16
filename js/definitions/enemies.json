@@ -6,6 +6,7 @@
         "bash",
         "kick"
       ]
+      
     },
     "enemy_01": {
       "name": "Slime",
