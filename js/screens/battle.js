@@ -80,7 +80,7 @@ export var battleController = {
 
     onActionSelected: function (buttonName) {
         if (this.playerTurn) {
-            switch (buttonName.toLowerCase()) {
+            switch (buttonName.toLowerCase()) { // FIXME this could be refactored to make use of OOP implementations
                 case "attack":
                     let attackResult = this.battleBehaviours.attack(
                         gameController.player, enemy
@@ -137,19 +137,106 @@ var enemyController = {
     },
 
     determineAction: function () {
+        var actionDefinition = {
+
+            normalChoose: function (enemyController) {
+                if (actionProbability < 50) {
+                    enemyController.determineAttack();
+                } else if (actionProbability < 75) {
+                    this.onActionSelected("defend");
+                } else if (actionProbability < 90) {
+                    this.onActionSelected("recover");
+                } else {
+                    this.onActionSelected("flee");
+                }
+            },
+
+            alwaysAttack: function (enemyController) { // used only for debugging
+                enemyController.determineAttack();
+            }
+
+        };
+
         // TODO choose between attack, defend, recover, or flee
         console.log("Enemy controller: I'm determining my action");
+        let actionProbability = Math.floor(Math.random() * 100);
+        console.log(`${actionProbability} is the magic number`);
+
+        // TODO create different branches for different health rates
+        actionDefinition.alwaysAttack(this);
+
+
         console.log("Enemy controller: I have decided");
-        this.onActionSelected("attack");
     },
 
-    determineAttack: function () {
-        enemy.attacks.forEach(element => {
-            console.log(`Enemy controller: I'm attacking with ${element.name}`);
-        });
+    determineAttack: function (clever) {
+        // contains logic for determining attack
+        var chosenAttack;
+        var attackDefinition = me.loader.getJSON("AttackDefinition");
+        var attackFunctions = {
+
+            randomAttack: function (){
+                let attackProbability = Math.floor(Math.random() * Object.keys(enemy.attacks).length);
+                console.log(`${attackProbability} is the attack magic number`);
+                let randomAttackName = enemy.attacks[attackProbability];
+                chosenAttack = attackDefinition[randomAttackName];
+            },
+
+            attackWithHighestDamage: function () {
+                enemy.attacks.forEach(element => {
+                    let enemyAttack = attackDefinition[element];
+                    console.log(`Enemy controller: I have ${element} attack`);
+                    if (chosenAttack === undefined || chosenAttack.damage < enemyAttack.damage) {
+                        chosenAttack = enemyAttack;
+                    }
+                });
+            }
+
+        }
+
+        console.log(Object.keys(enemy.attacks).length)
+        if (clever) { // determine attack based on getting highest damage value
+            console.log("Enemy controller: I'm clever");
+            attackFunctions.attackWithHighestDamage();
+        } else { // determine attack based on random number
+            console.log("Enemy controller: I'm not clever");
+            attackFunctions.randomAttack();
+        }
+        console.log(chosenAttack);
+        enemy.attack = chosenAttack.damage;
+
+        this.onActionSelected("attack");
+
     },
+
     onActionSelected: function (action) {
-        // TODO execute action
+        switch (action.toLowerCase()) { // FIXME this could be refactored to make use of OOP implementations
+            case "attack":
+                let attackResult = battleController.battleBehaviours.attack(
+                    enemy, gameController.player
+                );
+                if (attackResult != null) {
+                    console.log(`Enemy controller: You have lost to ${attackResult.name}`);
+                    me.state.change(gameController.STATE_END, "Enemy won");
+                }
+                break;
+            case "defend":
+                this.battleBehaviours.defend(
+                    enemy
+                );
+                break;
+            case "recover":
+                this.battleBehaviours.healthRecover(
+                    enemy
+                );
+                break;
+            case "flee":
+                console.log("Enemy controller: I'm fleeing");
+                break;
+            default:
+                console.log(`Enemy controller: ${action} action not recognized`);
+                break;
+        }
         logEntitiesHealth();
         battleController.passTurn();
     }
