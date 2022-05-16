@@ -6,6 +6,7 @@ export class BattleEntity {
         this.attacks = definition.attacks;
         this.defense = defense;
         this.hasProtection = false;
+        this.sprites = definition.sprites;
     }
 
 
