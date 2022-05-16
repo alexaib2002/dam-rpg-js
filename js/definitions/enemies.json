@@ -5,14 +5,17 @@
       "attacks": [
         "bash",
         "kick"
-      ]
+      ],
+      "sprites": "zombie"
+
     },
     "enemy_01": {
       "name": "Slime",
       "health": 45,
       "attacks": [
         "bash"
-      ]
+      ],
+        "sprites": "slime"
     },
 
     "enemy_02": {
@@ -20,7 +23,8 @@
         "health": 75,
         "attacks": [
             "cut"
-        ]
+        ],
+        "sprites": "skeleton"
   },
 
     "enemy_03": {
@@ -28,7 +32,8 @@
         "health": 50,
         "attacks": [
             "punch"
-        ]
+        ],  
+        "sprites": "goblin"
     },
 
     "enemy_04": {
@@ -38,7 +43,8 @@
             "bash",
             "kick",
             "slash"
-        ]
+        ],
+        "sprites": "armored-zombie"
     },
 
     "enemy_05": {
@@ -47,7 +53,9 @@
         "attacks": [
             "spit",
             "bash"
-        ]
+        ],
+        "sprites": "acid-slime"
+
     },
 
     "enemy_06": {
@@ -56,7 +64,8 @@
         "attacks": [
             "shoot",
             "bash"
-        ]
+        ],
+        "sprites": "skeleton-archer"
     },
 
     "enemy_07": {
@@ -67,7 +76,9 @@
             "kick",
             "slash",
             "spit"
-        ]
+        ],
+        "sprites": "forest-defender"
+        
     }
 }
 

@@ -1,6 +1,6 @@
 const DataManifest = [
     // Entity definitions
-    { name: "AttackDefinition", type: "json", src: "/js/definitions/attack.json" },
+    { name: "AttackDefinition", type: "json", src: "/js/definitions/attacks.json" },
     { name: "EnemyDefinition", type: "json", src: "/js/definitions/enemies.json" },
     // UI Texture
     { name: "UI_Assets-0", type: "image", src: "/src/img/UI_Assets-0.png" },
