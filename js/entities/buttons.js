@@ -1,5 +1,6 @@
 import * as me from 'https://esm.run/melonjs';
 import gameController from '/index.js';
+import { battleController } from '/js/screens/battle.js';
 
 export class ButtonUI extends me.GUI_Object {
 
@@ -49,7 +50,6 @@ export class ButtonUI extends me.GUI_Object {
      * function called when the object is clicked on
      */
     onClick(event) {
-        console.log("clicked on " + this.label);
         this.translate(0, this.height - this.clicked_region.height);
         this.setRegion(this.clicked_region);
         // don't propagate the event
@@ -62,6 +62,7 @@ export class ButtonUI extends me.GUI_Object {
     onRelease(/* event */) {
         this.setRegion(this.unclicked_region);
         this.translate(0, -(this.height - this.clicked_region.height));
+        battleController.onActionSelected(this.label);
         // don't propagate the event
         return false;
     }
