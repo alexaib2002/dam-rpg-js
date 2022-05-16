@@ -17,7 +17,7 @@ export default class Player extends BattleEntity {
                     }
                 },
                 sprite: "player",
-
+                defenseval: "10"
             }, 5
         );
         this.level = 1;

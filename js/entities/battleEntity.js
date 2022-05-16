@@ -2,12 +2,12 @@ export class BattleEntity {
     attackDamageValue = 0;
     defenseDamageValue = 0;
 
-    constructor(definition, defense) { // FIXME defense could be inside of definition
+    constructor(definition) {
         this.name = definition.name;
         this.health = definition.health;
         this.attacks = definition.attacks;
         this.sprite = definition.sprite;
-        this.defenseDamageValue = defense;
+        this.defenseDamageValue = definition.defenseval;
         this.hasProtection = false;
     }
 

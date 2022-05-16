@@ -59,6 +59,7 @@ export class BattleScreen extends me.Stage {
 
     initEnemies() {
         let placeholder_enemy_data = me.loader.getJSON("EnemyDefinition").enemy_00;
+        placeholder_enemy_data.defenseval = 5; // FIXME hardcoded defense value
         enemy = new BattleEnemy(placeholder_enemy_data, 5); // FIXME hardcoded defense
         console.log(`BattleScreen: A wild ${enemy.name} attacks!!`);
         console.log(enemy);
