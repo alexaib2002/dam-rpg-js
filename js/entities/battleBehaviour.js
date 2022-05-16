@@ -9,8 +9,8 @@ const clamp = (value, min, max) => Math.min(Math.max(value, min), max);
 
 class BattleBehaviours {
     attack(attacker, defender) {
-        let damage = attacker.attack - defender.defense;
-        console.log(`Attacker attack: ${attacker.attack} and defender defense: ${defender.defense}`);
+        let damage = attacker.attackDamageValue - defender.defenseDamageValue;
+        console.log(`Attacker attack: ${attacker.attackDamageValue} and defender defense: ${defender.defenseDamageValue}`);
         console.log(`Raw damage is ${damage}`);
         if (defender.hasProtection) {
             console.log(`${defender.name} has protection`);
@@ -26,9 +26,8 @@ class BattleBehaviours {
     };
 
     defend(entity) {
-
+        console.log(`${entity.name} is defending`);
         entity.hasProtection = true;
-
     };
 
 

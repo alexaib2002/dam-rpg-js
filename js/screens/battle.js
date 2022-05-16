@@ -1,7 +1,7 @@
 import * as me from 'https://esm.run/melonjs';
 import BattleUIContainer from '../ui/BattleUIContainer.js';
 import { ButtonUI } from '../entities/buttons.js';
-import BattleEntity from '../entities/battleEntity.js';
+import BattleEnemy from '/js/entities/enemy.js';
 import gameController from '../../index.js';
 import BattleBehaviours from '/js/entities/battleBehaviour.js';
 
@@ -21,7 +21,7 @@ function logEntitiesHealth() {
     console.log("---------------------------");
 }
 
-class BattleScreen extends me.Stage {
+export class BattleScreen extends me.Stage {
 
     onResetEvent() {
         this.initUserInterface();
@@ -59,7 +59,7 @@ class BattleScreen extends me.Stage {
 
     initEnemies() {
         let placeholder_enemy_data = me.loader.getJSON("EnemyDefinition").enemy_00;
-        enemy = new BattleEntity(placeholder_enemy_data, 5); // FIXME hardcoded defense
+        enemy = new BattleEnemy(placeholder_enemy_data, 5); // FIXME hardcoded defense
         console.log(`BattleScreen: A wild ${enemy.name} attacks!!`);
         console.log(enemy);
         me.game.world.addChild(new me.Sprite(
@@ -82,37 +82,12 @@ export var battleController = {
     onload: function () {
         console.log("Battle controller: I have been initialized");
         this.passTurn();
+        this.enemy = enemy; // FIXME ugly code, should be passed from overworld to battleController constructor
     },
 
     onActionSelected: function (buttonName) {
         if (this.playerTurn) {
-            switch (buttonName.toLowerCase()) { // FIXME this could be refactored to make use of OOP implementations
-                case "attack":
-                    let attackResult = this.battleBehaviours.attack(
-                        gameController.player, enemy
-                    );
-                    if (attackResult != null) {
-                        console.log(`Battle controller: You defeated ${attackResult.name}`);
-                        me.state.change(gameController.STATE_END, "Player won");
-                    }
-                    break;
-                case "defend":
-                    this.battleBehaviours.defend(
-                        gameController.player
-                    );
-                    break;
-                case "recover":
-                    this.battleBehaviours.healthRecover(
-                        gameController.player
-                    );
-                    break;
-                case "flee":
-                    this.battleBehaviours.flee();
-                    break;
-                default:
-                    console.log(`Battle controller: ${buttonName} action not recognized`);
-                    break;
-            }
+            gameController.player[buttonName.toLowerCase()]();
             logEntitiesHealth();
             this.passTurn();
         } else {
@@ -209,43 +184,15 @@ var enemyController = {
             attackFunctions.randomAttack();
         }
         console.log(chosenAttack);
-        enemy.attack = chosenAttack.damage;
+        enemy.attackDamageValue = chosenAttack.damage;
 
         this.onActionSelected("attack");
 
     },
 
     onActionSelected: function (action) {
-        switch (action.toLowerCase()) { // FIXME this could be refactored to make use of OOP implementations
-            case "attack":
-                let attackResult = battleController.battleBehaviours.attack(
-                    enemy, gameController.player
-                );
-                if (attackResult != null) {
-                    console.log(`Enemy controller: You have lost to ${attackResult.name}`);
-                    me.state.change(gameController.STATE_END, "Enemy won");
-                }
-                break;
-            case "defend":
-                this.battleBehaviours.defend(
-                    enemy
-                );
-                break;
-            case "recover":
-                this.battleBehaviours.healthRecover(
-                    enemy
-                );
-                break;
-            case "flee":
-                console.log("Enemy controller: I'm fleeing");
-                break;
-            default:
-                console.log(`Enemy controller: ${action} action not recognized`);
-                break;
-        }
+        enemy[action]();
         logEntitiesHealth();
         battleController.passTurn();
     }
 }
-
-export default BattleScreen;
