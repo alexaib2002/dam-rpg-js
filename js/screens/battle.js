@@ -7,6 +7,13 @@ import BattleBehaviours from '/js/entities/battleBehaviour.js';
 
 var enemy // FIXME enemy should be passed from overworld
 
+var availableActions = [
+    "attack",
+    "defend",
+    "recover",
+    "flee"
+]
+
 class BattleScreen extends me.Stage {
 
     onResetEvent() {
@@ -35,10 +42,10 @@ class BattleScreen extends me.Stage {
         );
 
         // FIXME more hardcode
-        panel.addChild(new ButtonUI(90, 40, "blue", "Attack"));
-        panel.addChild(new ButtonUI(300, 40, "yellow", "Defend"));
-        panel.addChild(new ButtonUI(510, 40, "green", "Recover"));
-        panel.addChild(new ButtonUI(720, 40, "red", "Flee"));
+        panel.addChild(new ButtonUI(90, 40, "blue", availableActions[0]));
+        panel.addChild(new ButtonUI(300, 40, "yellow", availableActions[1]));
+        panel.addChild(new ButtonUI(510, 40, "green", availableActions[2]));
+        panel.addChild(new ButtonUI(720, 40, "red", availableActions[3]));
 
         me.game.world.addChild(panel, 1);
     }
@@ -65,38 +72,41 @@ export var battleController = {
     },
 
     onActionSelected: function (buttonName) {
-        switch (buttonName.toLowerCase()) {
-            case "attack":
-                let attackResult = this.battleBehaviours.attack(
-                    gameController.player, enemy
-                );
-                if (attackResult != null) {
-                    console.log(`You defeated ${attackResult.name}`);
-
-                    me.state.change(gameController.STATE_END, "Player won");
-                }
-                break;
-            case "defend":
-                this.battleBehaviours.defend(
-                    gameController.player
-                );
-                break;
-            case "recover":
-                this.battleBehaviours.healthRecover(
-                    gameController.player
-                );
-                break;
-            case "flee":
-                this.battleBehaviours.flee();
-                break;
-            default:
-                console.log(`${buttonName} action not recognized`);
-                break;
+        if (this.playerTurn) {
+            switch (buttonName.toLowerCase()) {
+                case "attack":
+                    let attackResult = this.battleBehaviours.attack(
+                        gameController.player, enemy
+                    );
+                    if (attackResult != null) {
+                        console.log(`You defeated ${attackResult.name}`);
+                        me.state.change(gameController.STATE_END, "Player won");
+                    }
+                    break;
+                case "defend":
+                    this.battleBehaviours.defend(
+                        gameController.player
+                    );
+                    break;
+                case "recover":
+                    this.battleBehaviours.healthRecover(
+                        gameController.player
+                    );
+                    break;
+                case "flee":
+                    this.battleBehaviours.flee();
+                    break;
+                default:
+                    console.log(`${buttonName} action not recognized`);
+                    break;
+            }
+            console.log("------Debugger event:------");
+            console.log(`Player health: ${gameController.player.health}`);
+            console.log(`Enemy health: ${enemy.health}`);
+            this.passTurn();
+        } else {
+            console.log("Ignoing action selection, it's not player's turn");
         }
-        console.log("Debugger event:");
-        console.log(`Player health: ${gameController.player.health}`);
-        console.log(`Enemy health: ${enemy.health}`);
-        this.passTurn();
     },
 
     passTurn: function () {
@@ -117,10 +127,15 @@ var enemyController = {
 
     onTurnReceived: function () {
         // TODO determine what action enemy should take
+        console.log("Enemy: I have received the turn");
+        this.determineAction();
     },
 
     determineAction: function () {
         // TODO choose between attack, defend, recover, or flee
+        console.log("Enemy: I'm determining my action");
+        console.log("Enemy: I have decided");
+        this.onActionSelected("attack");
     },
 
     determineAttack: function () {
