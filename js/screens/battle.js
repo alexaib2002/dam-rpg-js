@@ -8,10 +8,10 @@ import BattleBehaviours from '/js/entities/battleBehaviour.js';
 var enemy // FIXME enemy should be passed from overworld
 
 var availableActions = [
-    "attack",
-    "defend",
-    "recover",
-    "flee"
+    "Attack",
+    "Defend",
+    "Recover",
+    "Flee"
 ]
 
 function logEntitiesHealth() {
