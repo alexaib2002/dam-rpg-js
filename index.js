@@ -42,8 +42,8 @@ var gameController = {
         "level": 1,
         "exp": 0,
         "health": 100,
-        "attack": 10,
-        "defense": 10
+        "attack": 20, // FIXME hardcoded value
+        "defense": 5
     }
 }
 export default gameController;
