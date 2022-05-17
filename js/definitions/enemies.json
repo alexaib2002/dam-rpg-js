@@ -27,10 +27,10 @@
 	},
 
 	"enemy_04": {
-		"name": "Armored Zombie",
+		"name": "Ghost",
 		"health": 150,
-		"attacks": ["bash", "kick", "slash"],
-		"sprite": "armored-zombie"
+		"attacks": ["bash", "kick"],
+		"sprite": "ghost"
 	},
 
 	"enemy_05": {
