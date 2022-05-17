@@ -20,7 +20,6 @@ const DataManifest = [
     { name: "slime", type: "image", src: "/src/sprites/ingame/slime.png" },
     { name: "skeleton", type: "image", src: "/src/sprites/ingame/skeleton.png" },
     { name: "goblin", type: "image", src: "/src/sprites/ingame/goblin.png" },
-    { name: "armored-zombie", type: "image", src: "/src/sprites/ingame/armored-zombie.png" },
     { name: "acid-slime", type: "image", src: "/src/sprites/ingame/acid-slime.png" },
     { name: "skeleton-archer", type: "image", src: "/src/sprites/ingame/skeleton-archer.png" },
     { name: "forest-defender", type: "image", src: "/src/sprites/ingame/forest-defender.png" },

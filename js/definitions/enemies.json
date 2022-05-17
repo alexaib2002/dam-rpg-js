@@ -30,13 +30,6 @@
 		"scaleFactor": 0.85
 	},
 
-	"enemy_04": {
-		"name": "Armored Zombie",
-		"health": 150,
-		"attacks": ["bash", "kick", "slash"],
-		"sprite": "armored-zombie"
-	},
-
 	"enemy_05": {
 		"name": "Acid Slime",
 		"health": 70,
