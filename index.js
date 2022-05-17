@@ -1,7 +1,8 @@
 import * as me from "https://esm.run/melonjs";
-import BattleScreen from "/js/screens/battle.js";
+import { BattleScreen } from "/js/screens/battle.js";
 import EndScreen from '/js/screens/placeholderEnd.js';
 import DataManifest from "./js/resources.js";
+import Player from "./js/entities/player.js";
 
 
 me.device.onReady(function() {
@@ -37,13 +38,8 @@ var gameController = {
             me.state.change(this.STATE_BATTLE);
         });
     },
-    player: {
-        "name": "PlayerName",
-        "level": 1,
-        "exp": 0,
-        "health": 100,
-        "attack": 10,
-        "defense": 10
-    }
+
+    player: new Player(),
+
 }
 export default gameController;

@@ -11,7 +11,7 @@ class BattleUIContainer extends me.Container {
         // [0, 0] as origin
         this.anchorPoint.set(0, 0);
         // persistent across level change
-        this.isPersistent = true;
+        this.isPersistent = false;
         // use screen coordinates
         this.floating = true;
         // give a name

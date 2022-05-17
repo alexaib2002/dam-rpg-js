@@ -1,17 +1,17 @@
 import * as me from 'https://esm.run/melonjs';
 import BattleUIContainer from '../ui/BattleUIContainer.js';
 import { ButtonUI } from '../entities/buttons.js';
-import BattleEntity from '../entities/battleEntity.js';
+import BattleEnemy from '/js/entities/enemy.js';
 import gameController from '../../index.js';
 import BattleBehaviours from '/js/entities/battleBehaviour.js';
 
 var enemy // FIXME enemy should be passed from overworld
 
 var availableActions = [
-    "attack",
-    "defend",
-    "recover",
-    "flee"
+    "Attack",
+    "Defend",
+    "Recover",
+    "Flee"
 ]
 
 function logEntitiesHealth() {
@@ -21,7 +21,7 @@ function logEntitiesHealth() {
     console.log("---------------------------");
 }
 
-class BattleScreen extends me.Stage {
+export class BattleScreen extends me.Stage {
 
     onResetEvent() {
         this.initUserInterface();
@@ -59,9 +59,16 @@ class BattleScreen extends me.Stage {
 
     initEnemies() {
         let placeholder_enemy_data = me.loader.getJSON("EnemyDefinition").enemy_00;
-        enemy = new BattleEntity(placeholder_enemy_data, 10);
+        placeholder_enemy_data.defenseval = 5; // FIXME hardcoded defense value
+        enemy = new BattleEnemy(placeholder_enemy_data, 5); // FIXME hardcoded defense
         console.log(`BattleScreen: A wild ${enemy.name} attacks!!`);
         console.log(enemy);
+        me.game.world.addChild(new me.Sprite(
+            me.game.viewport.width / 2, me.game.viewport.height / 2,
+            {
+                image: me.loader.getImage(enemy.sprite),
+            }
+        ))
         enemyController.onload(enemy);
     }
 }
@@ -76,37 +83,12 @@ export var battleController = {
     onload: function () {
         console.log("Battle controller: I have been initialized");
         this.passTurn();
+        this.enemy = enemy; // FIXME ugly code, should be passed from overworld to battleController constructor
     },
 
     onActionSelected: function (buttonName) {
         if (this.playerTurn) {
-            switch (buttonName.toLowerCase()) {
-                case "attack":
-                    let attackResult = this.battleBehaviours.attack(
-                        gameController.player, enemy
-                    );
-                    if (attackResult != null) {
-                        console.log(`Battle controller: You defeated ${attackResult.name}`);
-                        me.state.change(gameController.STATE_END, "Player won");
-                    }
-                    break;
-                case "defend":
-                    this.battleBehaviours.defend(
-                        gameController.player
-                    );
-                    break;
-                case "recover":
-                    this.battleBehaviours.healthRecover(
-                        gameController.player
-                    );
-                    break;
-                case "flee":
-                    this.battleBehaviours.flee();
-                    break;
-                default:
-                    console.log(`Battle controller: ${buttonName} action not recognized`);
-                    break;
-            }
+            gameController.player[buttonName.toLowerCase()]();
             logEntitiesHealth();
             this.passTurn();
         } else {
@@ -137,22 +119,81 @@ var enemyController = {
     },
 
     determineAction: function () {
+        var actionDefinition = {
+
+            normalChoose: function (enemyController) {
+                if (actionProbability < 50) {
+                    enemyController.determineAttack();
+                } else if (actionProbability < 75) {
+                    this.onActionSelected("defend");
+                } else if (actionProbability < 90) {
+                    this.onActionSelected("recover");
+                } else {
+                    this.onActionSelected("flee");
+                }
+            },
+
+            alwaysAttack: function (enemyController) { // used only for debugging
+                enemyController.determineAttack();
+            }
+
+        };
+
         // TODO choose between attack, defend, recover, or flee
         console.log("Enemy controller: I'm determining my action");
+        let actionProbability = Math.floor(Math.random() * 100);
+        console.log(`${actionProbability} is the magic number`);
+
+        // TODO create different branches for different health rates
+        actionDefinition.alwaysAttack(this);
+
+
         console.log("Enemy controller: I have decided");
-        this.onActionSelected("attack");
     },
 
-    determineAttack: function () {
-        enemy.attacks.forEach(element => {
-            console.log(`Enemy controller: I'm attacking with ${element.name}`);
-        });
+    determineAttack: function (clever) {
+        // contains logic for determining attack
+        var chosenAttack;
+        var attackDefinition = me.loader.getJSON("AttackDefinition");
+        var attackFunctions = {
+
+            randomAttack: function (){
+                let attackProbability = Math.floor(Math.random() * Object.keys(enemy.attacks).length);
+                console.log(`${attackProbability} is the attack magic number`);
+                let randomAttackName = enemy.attacks[attackProbability];
+                chosenAttack = attackDefinition[randomAttackName];
+            },
+
+            attackWithHighestDamage: function () {
+                enemy.attacks.forEach(element => {
+                    let enemyAttack = attackDefinition[element];
+                    console.log(`Enemy controller: I have ${element} attack`);
+                    if (chosenAttack === undefined || chosenAttack.damage < enemyAttack.damage) {
+                        chosenAttack = enemyAttack;
+                    }
+                });
+            }
+
+        }
+
+        console.log(Object.keys(enemy.attacks).length)
+        if (clever) { // determine attack based on getting highest damage value
+            console.log("Enemy controller: I'm clever");
+            attackFunctions.attackWithHighestDamage();
+        } else { // determine attack based on random number
+            console.log("Enemy controller: I'm not clever");
+            attackFunctions.randomAttack();
+        }
+        console.log(chosenAttack);
+        enemy.attackDamageValue = chosenAttack.damage;
+
+        this.onActionSelected("attack");
+
     },
+
     onActionSelected: function (action) {
-        // TODO execute action
+        enemy[action]();
         logEntitiesHealth();
         battleController.passTurn();
     }
 }
-
-export default BattleScreen;

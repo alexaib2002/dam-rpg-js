@@ -1,40 +1,49 @@
 {
-    "bash": {
-      "name": "Bash",
-      "description": "%s is suddenly bashes you!!"
-    },
-    "kick": {
-      "name": "Kick",
-      "description": "%s did a quick kick!!"
-    },
-    "none": {
-      "name": "No attack",
-      "description": "%s did nothing to defend itself!!"
-    },
+	"bash": {
+		"name": "Bash",
+		"description": "%s is suddenly bashes you!!",
+		"damage": "20"
+	},
 
-    "punch": {
-        "name": "Punch",
-        "description": "%s did a punch!!"
-    },
+	"kick": {
+		"name": "Kick",
+		"description": "%s did a quick kick!!",
+		"damage": "10"
+	},
 
-    "cut": {
-        "name": "Cut",
-        "description": "%s did a Cut!!"
-    },
+	"none": {
+		"name": "No attack",
+		"description": "%s did nothing to defend itself!!",
+		"damage": "0"
+	},
 
-    "slash": {
-        "name": "Slash",
-        "description": "%s did a slash!!"
-    },
+	"punch": {
+		"name": "Punch",
+		"description": "%s did a punch!!",
+		"damage": "15"
+	},
 
-    "spit": {
-        "name": "Acid Spit",
-        "description": "%s did a spit!!"
-    },
-    
-    "Shoot": {
-        "name": "Shoot",
-        "description": "%s shoot an arrow!!"
+	"cut": {
+		"name": "Cut",
+		"description": "%s did a Cut!!",
+		"damage": "20"
+	},
 
-    }
+	"slash": {
+		"name": "Slash",
+		"description": "%s did a slash!!",
+		"damage": "15"
+	},
+
+	"spit": {
+		"name": "Acid Spit",
+		"description": "%s did a spit!!",
+		"damage": "20"
+	},
+
+	"shoot": {
+		"name": "Shoot",
+		"description": "%s shoot an arrow!!",
+		"damage": "15"
+	}
 }

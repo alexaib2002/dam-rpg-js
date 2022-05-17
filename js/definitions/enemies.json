@@ -1,90 +1,56 @@
 {
-    "enemy_00": {
-      "name": "Zombie",
-      "health": 100,
-      "attacks": [
-        "bash",
-        "kick"
-      ],
-      "sprites": "zombie"
+	"enemy_00": {
+		"name": "Zombie",
+		"health": 100,
+		"attacks": ["bash", "kick"],
+		"sprite": "zombie"
+	},
+	"enemy_01": {
+		"name": "Slime",
+		"health": 45,
+		"attacks": ["bash"],
+		"sprite": "slime"
+	},
 
-    },
-    "enemy_01": {
-      "name": "Slime",
-      "health": 45,
-      "attacks": [
-        "bash"
-      ],
-        "sprites": "slime"
-    },
+	"enemy_02": {
+		"name": "Skeleton",
+		"health": 75,
+		"attacks": ["cut"],
+		"sprite": "skeleton"
+	},
 
-    "enemy_02": {
-        "name": "Skeleton",
-        "health": 75,
-        "attacks": [
-            "cut"
-        ],
-        "sprites": "skeleton"
-  },
+	"enemy_03": {
+		"name": "Goblin",
+		"health": 50,
+		"attacks": ["punch"],
+		"sprite": "goblin"
+	},
 
-    "enemy_03": {
-        "name": "Goblin",
-        "health": 50,
-        "attacks": [
-            "punch"
-        ],  
-        "sprites": "goblin"
-    },
+	"enemy_04": {
+		"name": "Armored Zombie",
+		"health": 150,
+		"attacks": ["bash", "kick", "slash"],
+		"sprite": "armored-zombie"
+	},
 
-    "enemy_04": {
-        "name": "Armored Zombie",
-        "health": 150,
-        "attacks": [
-            "bash",
-            "kick",
-            "slash"
-        ],
-        "sprites": "armored-zombie"
-    },
+	"enemy_05": {
+		"name": "Acid Slime",
+		"health": 70,
+		"attacks": ["spit", "bash"],
+		"sprite": "acid-slime"
+	},
 
-    "enemy_05": {
-        "name": "Acid Slime",
-        "health": 70,
-        "attacks": [
-            "spit",
-            "bash"
-        ],
-        "sprites": "acid-slime"
+	"enemy_06": {
+		"name": "Skeleton Archer",
+		"health": 100,
+		"attacks": ["shoot", "bash"],
+		"sprite": "skeleton-archer"
+	},
 
-    },
-
-    "enemy_06": {
-        "name": "Skeleton Archer",
-        "health": 100,
-        "attacks": [
-            "shoot",
-            "bash"
-        ],
-        "sprites": "skeleton-archer"
-    },
-
-    "enemy_07": {
-        "name": "Forest defender",
-        "health": 300,
-        "attacks": [
-            "bash",
-            "kick",
-            "slash",
-            "spit"
-        ],
-        "sprites": "forest-defender"
-        
-    }
+	"enemy_07": {
+		"name": "Forest defender",
+		"health": 300,
+		"attacks": ["bash", "kick", "slash", "spit"],
+		"sprite": "forest-defender"
+	}
 }
-
-
-
-  
-
-
-
