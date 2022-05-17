@@ -40,7 +40,7 @@ export class BattleScreen extends me.Stage {
             me.game.viewport.width / backgroundImage.width,
             me.game.viewport.height / backgroundImage.height
         );
-        me.game.world.addChild(backgroundImage, 0);
+        me.game.world.addChild(backgroundImage, -100);
 
 
         // init ui elements
@@ -58,17 +58,11 @@ export class BattleScreen extends me.Stage {
     }
 
     initEnemies() {
-        let placeholder_enemy_data = me.loader.getJSON("EnemyDefinition").enemy_00;
+        let placeholder_enemy_data = me.loader.getJSON("EnemyDefinition").enemy_07;
         placeholder_enemy_data.defenseval = 5; // FIXME hardcoded defense value
         enemy = new BattleEnemy(placeholder_enemy_data, 5); // FIXME hardcoded defense
         console.log(`BattleScreen: A wild ${enemy.name} attacks!!`);
         console.log(enemy);
-        me.game.world.addChild(new me.Sprite(
-            me.game.viewport.width / 2, me.game.viewport.height / 2,
-            {
-                image: me.loader.getImage(enemy.sprite),
-            }
-        ))
         enemyController.onload(enemy);
     }
 }

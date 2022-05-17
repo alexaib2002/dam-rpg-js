@@ -6,7 +6,22 @@ import BattleEntity from "/js/entities/battleEntity.js";
 export default class BattleEnemy extends BattleEntity {
     constructor(definition, defense) {
         super(definition, defense);
+        let offset = definition.offset || {
+            "x": 0,
+            "y": 0
+        };
 
+        let enemySprite = new me.Sprite(
+            me.game.viewport.width / 2 + offset.x,
+            me.game.viewport.height / 2 + offset.y,
+            {
+                image: me.loader.getImage(this.sprite),
+            });
+        enemySprite.scale(
+            definition.scaleFactor,
+            definition.scaleFactor,
+        );
+        me.game.world.addChild(enemySprite, 0);
     }
 
     attack() {
