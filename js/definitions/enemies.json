@@ -29,7 +29,14 @@
 		"sprite": "goblin",
 		"scaleFactor": 0.85
 	},
-
+	
+	"enemy_04": {
+		"name": "Ghost",
+		"health": 150,
+		"attacks": ["bash", "kick"],
+		"sprite": "ghost"
+	},
+	
 	"enemy_05": {
 		"name": "Acid Slime",
 		"health": 70,
