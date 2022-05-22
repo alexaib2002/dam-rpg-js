@@ -4,6 +4,7 @@ import { ButtonUI } from '../entities/buttons.js';
 import BattleEnemy from '/js/entities/enemy.js';
 import gameController from '../../index.js';
 import BattleBehaviours from '/js/entities/battleBehaviour.js';
+import Player from '../entities/player.js';
 
 var enemy // FIXME enemy should be passed from overworld
 
@@ -26,7 +27,9 @@ export class BattleScreen extends me.Stage {
     onResetEvent() {
         this.initUserInterface();
         this.initEnemies();
+        this.initSound();
         battleController.onload();
+      
     }
 
     initUserInterface() {
@@ -65,6 +68,12 @@ export class BattleScreen extends me.Stage {
         console.log(enemy);
         enemyController.onload(enemy);
     }
+
+    initSound() {
+        me.audio.play("battle-sound.mp3");
+    }
+
+    
 }
 
 export var battleController = {
