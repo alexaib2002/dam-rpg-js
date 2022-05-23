@@ -7,15 +7,24 @@ export default class OverworldScreen extends me.Stage {
         me.level.load("room01", {
             container: levelContainer
         });
-        // translate levelContainer to the origin coordinate of the viewport
-        levelContainer.pos.set(
-            0,0
-        );
-        // FIXME hardcode in scaling the room container
-        levelContainer.scale(
-            2,
-            2,
-        );
+        // translate levelContainer to the origin coordinate of the viewpor
+
+        let ratioContainer = levelContainer.height / levelContainer.width;
+        let ratioX = me.game.viewport.width / levelContainer.width;
+        let ratioY = me.game.viewport.height / levelContainer.height;
+
+        if (ratioY > ratioX) {
+            levelContainer.scale(ratioX, ratioX);
+            levelContainer.pos.set(
+                0, levelContainer.height / 6
+            );
+        } else {
+            levelContainer.scale(ratioY, ratioY);
+            levelContainer.pos.set(
+                levelContainer.width / 6, 0
+            );
+        }
+
         // add it to the game world
         me.game.world.addChild(levelContainer);
     }
