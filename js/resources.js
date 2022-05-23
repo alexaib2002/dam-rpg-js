@@ -15,6 +15,20 @@ const DataManifest = [
 
     { name: "'kenpixel'", type: "fontface",  src: "url('../src/font/kenvector_future.woff2')" },
 
+    // Rooms
+    { name: "tiles", type: "image", src: "/src/tilemap/source/MiniPack/tiles.png" },
+    { name: "BgTileset", type: "tsx", src: "/src/tilemap/tilesets/BgTileset.tsx" },
+    { name: "table_2", type: "image", src: "/src/tilemap/source/MiniPack/table_2.png" },
+    { name: "table_2", type: "tsx", src: "/src/tilemap/tilesets/table_2.tsx" },
+    { name: "ObjTileset", type: "tsx", src: "/src/tilemap/tilesets/ObjTileset.tsx" },
+    { name: "building3_blue", type: "image", src: "/src/tilemap/source/MiniPack/building3_blue.png" },
+    { name: "Building2", type: "tsx", src: "/src/tilemap/tilesets/Building2.tsx" },
+    { name: "building1_blue", type: "image", src: "/src/tilemap/source/MiniPack/building1_blue.png" },
+    { name: "tree_1", type: "image", src: "/src/tilemap/source/MiniPack/tree_1.png" },
+    { name: "Trees", type: "tsx", src: "/src/tilemap/tilesets/Trees.tsx" },
+    { name: "room01", type: "tmx", src: "/src/tilemap/Room_01.tmx" },
+
+
     // Sprites for enemies (temporal, will be replaced by texturePacker)
     { name: "zombie", type: "image", src: "/src/sprites/ingame/zombie.png" },
     { name: "slime", type: "image", src: "/src/sprites/ingame/slime.png" },

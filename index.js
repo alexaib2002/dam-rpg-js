@@ -1,8 +1,9 @@
 import * as me from "https://esm.run/melonjs";
 import { BattleScreen } from "/js/screens/battle.js";
 import EndScreen from '/js/screens/placeholderEnd.js';
-import DataManifest from "./js/resources.js";
-import Player from "./js/entities/player.js";
+import OverworldScreen from "/js/screens/overworld.js";
+import DataManifest from "/js/resources.js";
+import Player from "/js/entities/player.js";
 
 
 me.device.onReady(function() {
@@ -34,8 +35,9 @@ var gameController = {
                 me.loader.getJSON("UI_Assets-2")
             ]);
             me.state.set(this.STATE_BATTLE, new BattleScreen());
+            me.state.set(this.STATE_OVERWORLD, new OverworldScreen());
             me.state.set(this.STATE_END, new EndScreen());
-            me.state.change(this.STATE_BATTLE);
+            me.state.change(this.STATE_OVERWORLD);
         });
     },
 
