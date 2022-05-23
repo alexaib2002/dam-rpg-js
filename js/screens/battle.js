@@ -69,8 +69,8 @@ export class BattleScreen extends me.Stage {
         enemyController.onload(enemy);
     }
 
-    initSound() {
-        me.audio.play("battle-sound.mp3");
+    initSound() { 
+        me.audio.play("battle-sound");
     }
 
     

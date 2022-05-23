@@ -25,7 +25,7 @@ const DataManifest = [
     { name: "forest-defender", type: "image", src: "/src/sprites/ingame/forest-defender.png" },
 
     // Sound
-    { name: "battle-sound", type: "audio", src: "src/audio/battle-sound.mp3" },
+    { name: "battle-sound", type: "audio", src: "src/audio/" },
 ];
 
 export default DataManifest;
