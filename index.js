@@ -26,7 +26,7 @@ var gameController = {
             alert("Your browser does not support HTML5 canvas.");
             return;
         }
-        me.audio.init("mp3");
+        me.audio.init("wav");
         me.loader.preload(DataManifest, () => {
             this.texture = new me.TextureAtlas([
                 me.loader.getJSON("UI_Assets-0"),

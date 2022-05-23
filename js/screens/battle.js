@@ -27,7 +27,7 @@ export class BattleScreen extends me.Stage {
     onResetEvent() {
         this.initUserInterface();
         this.initEnemies();
-        this.initSound();
+        this.initBgAudio();
         battleController.onload();
       
     }
@@ -69,8 +69,10 @@ export class BattleScreen extends me.Stage {
         enemyController.onload(enemy);
     }
 
-    initSound() { 
-        me.audio.play("battle-sound");
+    initBgAudio() { 
+        console.log("Battel Audio: I have been initialized")
+        me.audio.play("battle-theme-intro");
+        me.audio.playTrack("battle-theme-loop");
     }
 
     
@@ -91,6 +93,7 @@ export var battleController = {
 
     onActionSelected: function (buttonName) {
         if (this.playerTurn) {
+
             gameController.player[buttonName.toLowerCase()]();
             logEntitiesHealth();
             this.passTurn();
