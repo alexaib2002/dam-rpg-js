@@ -8,6 +8,7 @@ export default class OverworldPlayer extends me.Entity {
         super(x, y, settings);
 
         this.body.collisionType = me.collision.types.PLAYER_OBJECT;
+        this.moving = false;
 
         // walking & jumping speed
         this.body.setMaxVelocity(2, 2);
@@ -27,8 +28,15 @@ export default class OverworldPlayer extends me.Entity {
             "player3-idle",
             "player4-idle",
             "player5-idle",
+            "player0-run",
+            "player1-run",
+            "player2-run",
+            "player3-run",
+            "player4-run",
+            "player5-run",
         ]);
         this.renderable.addAnimation("idle", [0, 1, 2, 3, 4], 100);
+        this.renderable.addAnimation("run", [5, 6, 7, 8, 9], 100);
         this.renderable.setCurrentAnimation("idle");
         this.anchorPoint.set(0.5, .5);
     }
@@ -36,8 +44,10 @@ export default class OverworldPlayer extends me.Entity {
     update(dt) {
         if (me.input.isKeyPressed("left")) {
             this.body.force.x = -this.body.maxVel.x;
+            this.renderable.flipX(true);
         } else if (me.input.isKeyPressed("right")) {
             this.body.force.x = this.body.maxVel.x;
+            this.renderable.flipX(false);
         } else {
             this.body.force.x = 0;
         }
@@ -48,8 +58,21 @@ export default class OverworldPlayer extends me.Entity {
         } else {
             this.body.force.y = 0;
         }
+        let isMoving = this.body.vel.x !== 0 || this.body.vel.y !== 0;
 
-        return (super.update(dt) || this.body.vel.x !== 0 || this.body.vel.y !== 0);
+        if (this.moving !== isMoving) {
+            if (isMoving) {
+                this.renderable.setCurrentAnimation("run");
+                this.moving = isMoving;
+                console.log("moving");
+            } else {
+                this.renderable.setCurrentAnimation("idle");
+                this.moving = isMoving;
+                console.log("not moving");
+            }
+        }
+
+        return (super.update(dt) || isMoving);
     }
 
     onCollision() {

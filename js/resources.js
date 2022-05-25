@@ -31,6 +31,8 @@ const DataManifest = [
     // Overworld assets
     { name: "player", type: "image", src: "/src/img/OverworldPlayer/player.png" },
     { name: "player", type: "json", src: "/src/img/OverworldPlayer/player.json" },
+    { name: "player-run", type: "image", src: "/src/img/OverworldPlayer/player-run.png" },
+    { name: "player-run", type: "json", src: "/src/img/OverworldPlayer/player-run.json" },
 
 
     // Sprites for enemies (temporal, will be replaced by texturePacker)

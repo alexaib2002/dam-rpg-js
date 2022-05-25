@@ -38,6 +38,7 @@ var gameController = {
                 me.loader.getJSON("UI_Assets-1"),
                 me.loader.getJSON("UI_Assets-2"),
                 me.loader.getJSON("player"),
+                me.loader.getJSON("player-run"),
             ]);
 
             me.state.transition("fade", "#FFFFFF", 250);
