@@ -22,6 +22,11 @@ function logEntitiesHealth() {
     console.log("---------------------------");
 }
 
+function playBgAudio() {
+    me.audio.playTrack("battle-theme-loop");
+
+}
+
 export class BattleScreen extends me.Stage {
 
     onResetEvent() {
@@ -71,11 +76,9 @@ export class BattleScreen extends me.Stage {
 
     initBgAudio() { 
         console.log("Battel Audio: I have been initialized")
-        me.audio.play("battle-theme-intro");
-        me.audio.playTrack("battle-theme-loop");
+        me.audio.play("battle-theme-intro", false, playBgAudio);
     }
-
-    
+   
 }
 
 export var battleController = {
@@ -93,7 +96,7 @@ export var battleController = {
 
     onActionSelected: function (buttonName) {
         if (this.playerTurn) {
-
+            me.audio.play("button1", false, null, 0.3);
             gameController.player[buttonName.toLowerCase()]();
             logEntitiesHealth();
             this.passTurn();
