@@ -27,6 +27,7 @@ export default class OverworldScreen extends me.Stage {
 
         // add it to the game world
         me.game.world.addChild(levelContainer);
+        // override engine gravity calculations
         me.game.world.gravity = {
             "x": 0,
             "y": 0

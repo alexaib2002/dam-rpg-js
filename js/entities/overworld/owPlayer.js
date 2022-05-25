@@ -49,8 +49,6 @@ export default class OverworldPlayer extends me.Entity {
             this.body.force.y = 0;
         }
 
-        console.log(this.body.vel)
-
         return (super.update(dt) || this.body.vel.x !== 0 || this.body.vel.y !== 0);
     }
 
