@@ -5,6 +5,8 @@ import OverworldScreen from "/js/screens/overworld.js";
 import DataManifest from "/js/resources.js";
 import Player from "/js/entities/player.js";
 
+import OverworldPlayer from "/js/entities/overworld/owPlayer.js";
+
 
 me.device.onReady(function() {
     gameController.onload();
@@ -29,10 +31,13 @@ var gameController = {
         }
 
         me.loader.preload(DataManifest, () => {
+            me.pool.register("EntPlayer", OverworldPlayer);
+
             this.texture = new me.TextureAtlas([
                 me.loader.getJSON("UI_Assets-0"),
                 me.loader.getJSON("UI_Assets-1"),
-                me.loader.getJSON("UI_Assets-2")
+                me.loader.getJSON("UI_Assets-2"),
+                me.loader.getJSON("player"),
             ]);
 
             me.state.transition("fade", "#FFFFFF", 250);
@@ -41,8 +46,6 @@ var gameController = {
             me.state.set(this.STATE_OVERWORLD, new OverworldScreen());
             me.state.set(this.STATE_END, new EndScreen());
             me.state.change(this.STATE_OVERWORLD);
-
-            // TODO create pool of overworld entities
         });
     },
 

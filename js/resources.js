@@ -28,6 +28,10 @@ const DataManifest = [
     { name: "Trees", type: "tsx", src: "/src/tilemap/tilesets/Trees.tsx" },
     { name: "room01", type: "tmx", src: "/src/tilemap/Room_01.tmx" },
 
+    // Overworld assets
+    { name: "player", type: "image", src: "/src/img/OverworldPlayer/player.png" },
+    { name: "player", type: "json", src: "/src/img/OverworldPlayer/player.json" },
+
 
     // Sprites for enemies (temporal, will be replaced by texturePacker)
     { name: "zombie", type: "image", src: "/src/sprites/ingame/zombie.png" },
