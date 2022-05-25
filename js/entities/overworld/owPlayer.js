@@ -1,23 +1,19 @@
 import * as me from "https://esm.run/melonjs";
 import gameController from "/index.js";
 
+const smoothness = 0.4;
+
 export default class OverworldPlayer extends me.Entity {
     constructor(x, y, settings) {
         super(x, y, settings);
 
         this.body.collisionType = me.collision.types.PLAYER_OBJECT;
 
-        // player can exit the viewport (jumping, falling into a hole, etc.)
-        this.alwaysUpdate = true;
-
         // walking & jumping speed
-        this.body.movSpeed = 5;
-        this.body.movMultiplier = 100;
+        this.body.setMaxVelocity(2, 2);
+        this.body.setFriction(smoothness, smoothness);
 
         this.alwaysUpdate = true;
-
-
-
         // bind movement keys
         me.input.bindKey(me.input.KEY.LEFT, "left");
         me.input.bindKey(me.input.KEY.RIGHT, "right");
@@ -36,4 +32,30 @@ export default class OverworldPlayer extends me.Entity {
         this.renderable.setCurrentAnimation("idle");
         this.anchorPoint.set(0.5, .5);
     }
+
+    update(dt) {
+        if (me.input.isKeyPressed("left")) {
+            this.body.force.x = -this.body.maxVel.x;
+        } else if (me.input.isKeyPressed("right")) {
+            this.body.force.x = this.body.maxVel.x;
+        } else {
+            this.body.force.x = 0;
+        }
+        if (me.input.isKeyPressed("up")) {
+            this.body.force.y = -this.body.maxVel.y;
+        } else if (me.input.isKeyPressed("down")) {
+            this.body.force.y = this.body.maxVel.y;
+        } else {
+            this.body.force.y = 0;
+        }
+
+        console.log(this.body.vel)
+
+        return (super.update(dt) || this.body.vel.x !== 0 || this.body.vel.y !== 0);
+    }
+
+    onCollision() {
+        return true;
+    }
+
 }
