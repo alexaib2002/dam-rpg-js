@@ -1,6 +1,7 @@
 import * as me from 'https://esm.run/melonjs';
 import BattleUIContainer from '../ui/BattleUIContainer.js';
 import { ButtonUI } from '../entities/buttons.js';
+import { enemyStatsUIContainer } from '../ui/EnemyUIContainer.js';
 import BattleEnemy from '/js/entities/enemy.js';
 import gameController from '../../index.js';
 import BattleBehaviours from '/js/entities/battleBehaviour.js';
@@ -30,6 +31,7 @@ export class BattleScreen extends me.Stage {
     }
 
     initUserInterface() {
+        // Background Image
         let backgroundImage = new me.Sprite(
             me.game.viewport.width / 2, me.game.viewport.height / 2,
             {
@@ -41,20 +43,24 @@ export class BattleScreen extends me.Stage {
             me.game.viewport.height / backgroundImage.height
         );
         me.game.world.addChild(backgroundImage, -100);
-
-
+        
         // init ui elements
-        var panel = new BattleUIContainer(
+        var buttonsPanel = new BattleUIContainer(
             10, 650, 1020, 120 // FIXME hardcoded
         );
 
         // FIXME more hardcode
-        panel.addChild(new ButtonUI(90, 40, "blue", availableActions[0]));
-        panel.addChild(new ButtonUI(300, 40, "yellow", availableActions[1]));
-        panel.addChild(new ButtonUI(510, 40, "green", availableActions[2]));
-        panel.addChild(new ButtonUI(720, 40, "red", availableActions[3]));
+        buttonsPanel.addChild(new ButtonUI(90, 40, "blue", availableActions[0]));
+        buttonsPanel.addChild(new ButtonUI(300, 40, "yellow", availableActions[1]));
+        buttonsPanel.addChild(new ButtonUI(510, 40, "green", availableActions[2]));
+        buttonsPanel.addChild(new ButtonUI(720, 40, "red", availableActions[3]));
 
-        me.game.world.addChild(panel, 1);
+        me.game.world.addChild(buttonsPanel, 1);
+
+        var enemyStatsPanel = new  enemyStatsUIContainer(
+            470, 50, 6, 6
+        );
+        me.game.world.addChild(enemyStatsPanel);
     }
 
     initEnemies() {

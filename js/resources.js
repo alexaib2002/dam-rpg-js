@@ -2,6 +2,7 @@ const DataManifest = [
     // Entity definitions
     { name: "AttackDefinition", type: "json", src: "/js/definitions/attacks.json" },
     { name: "EnemyDefinition", type: "json", src: "/js/definitions/enemies.json" },
+    
     // UI Texture
     { name: "UI_Assets-0", type: "image", src: "/src/img/UI_Assets-0.png" },
     { name: "UI_Assets-1", type: "image", src: "/src/img/UI_Assets-1.png" },
@@ -23,6 +24,10 @@ const DataManifest = [
     { name: "acid-slime", type: "image", src: "/src/sprites/ingame/acid-slime.png" },
     { name: "skeleton-archer", type: "image", src: "/src/sprites/ingame/skeleton-archer.png" },
     { name: "forest-defender", type: "image", src: "/src/sprites/ingame/forest-defender.png" },
+
+    // Sprites for enemy stats 
+    { name: "enemyStats-frame", type: "image", src: "src/sprites/healthbar/enemyStats-frame.png"},
+    { name: "healthBar-fill", type: "image", src: "src/sprites/healthbar/healthBar-fill.png"},
 ];
 
 export default DataManifest;
