@@ -5,8 +5,7 @@ import { enemyStatsUIContainer } from '../ui/EnemyUIContainer.js';
 import BattleEnemy from '/js/entities/enemy.js';
 import gameController from '../../index.js';
 import BattleBehaviours from '/js/entities/battleBehaviour.js';
-import healthBar from '/js/entities/healthBar.js';
-import HealthBarUI from '../entities/healthBar.js';
+
 
 var enemy // FIXME enemy should be passed from overworld
 
@@ -27,7 +26,6 @@ function logEntitiesHealth() {
 export class BattleScreen extends me.Stage {
 
     onResetEvent() {
-        this.initHealthBar();
         this.initUserInterface();
         this.initEnemies();
         battleController.onload();
@@ -66,11 +64,7 @@ export class BattleScreen extends me.Stage {
         enemyStatsPanel.fillEnemyHealth();
         me.game.world.addChild(enemyStatsPanel);
     }
-    initHealthBar() {
-
-        me.game.world.addChild(new HealthBarUI(100, "red"));
-        
-    }
+    
     initEnemies() {
         let placeholder_enemy_data = me.loader.getJSON("EnemyDefinition").enemy_07;
         placeholder_enemy_data.defenseval = 5; // FIXME hardcoded defense value
