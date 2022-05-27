@@ -26,7 +26,10 @@ const DataManifest = [
     { name: "building1_blue", type: "image", src: "/src/tilemap/source/MiniPack/building1_blue.png" },
     { name: "tree_1", type: "image", src: "/src/tilemap/source/MiniPack/tree_1.png" },
     { name: "Trees", type: "tsx", src: "/src/tilemap/tilesets/Trees.tsx" },
+    { name: "angar2_blue", type: "image", src: "/src/tilemap/source/MiniPack/angar2_blue.png" },
+    { name: "Angar1", type: "tsx", src: "/src/tilemap/tilesets/Angar1.tsx" },
     { name: "room01", type: "tmx", src: "/src/tilemap/Room_01.tmx" },
+    { name: "room02", type: "tmx", src: "/src/tilemap/Room_02.tmx" },
 
     // Overworld assets
     { name: "player", type: "image", src: "/src/img/OverworldPlayer/player.png" },

@@ -42,6 +42,24 @@ export default class OverworldPlayer extends me.Entity {
     }
 
     update(dt) {
+        // FIXME hack to scale the game viewport to the screen size
+        if (me.game.world) {
+            let ratioX = me.game.viewport.width / me.game.world.width;
+            let ratioY = me.game.viewport.height / me.game.world.height;
+
+            if (ratioY > ratioX) {
+                me.game.world.scale(ratioX, ratioX);
+                me.game.world.pos.set(
+                    0, me.game.world.height / 6
+                );
+            } else {
+                me.game.world.scale(ratioY, ratioY);
+                me.game.world.pos.set(
+                    me.game.world.width / 6, 0
+                );
+            }
+        }
+
         if (me.input.isKeyPressed("left")) {
             this.body.force.x = -this.body.maxVel.x;
             this.renderable.flipX(true);
@@ -62,6 +80,7 @@ export default class OverworldPlayer extends me.Entity {
 
         if (this.moving !== isMoving) {
             if (isMoving) {
+
                 this.renderable.setCurrentAnimation("run");
                 this.moving = isMoving;
                 console.log("moving");
