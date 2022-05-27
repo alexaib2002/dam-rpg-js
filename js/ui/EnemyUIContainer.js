@@ -35,4 +35,18 @@ export class enemyStatsUIContainer extends me.Container{
         this.grabOffset = new me.Vector2d(0,0);
 
     }
+
+    fillEnemyHealth() {
+        this.enemyHealthFill = new me.Sprite(
+            420, 25,
+            {
+                image: me.loader.getImage("healthBar-fill"),
+            }
+        )
+        this.enemyHealthFill.scale(
+            0.35, 0.07,
+        );
+        this.addChild(this.enemyHealthFill);
+        
+    }
 }

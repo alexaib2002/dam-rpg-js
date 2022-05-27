@@ -60,6 +60,7 @@ export class BattleScreen extends me.Stage {
         var enemyStatsPanel = new  enemyStatsUIContainer(
             470, 50, 6, 6
         );
+        enemyStatsPanel.fillEnemyHealth();
         me.game.world.addChild(enemyStatsPanel);
     }
 
