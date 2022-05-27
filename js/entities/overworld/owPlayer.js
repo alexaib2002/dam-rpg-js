@@ -80,14 +80,11 @@ export default class OverworldPlayer extends me.Entity {
 
         if (this.moving !== isMoving) {
             if (isMoving) {
-
                 this.renderable.setCurrentAnimation("run");
                 this.moving = isMoving;
-                console.log("moving");
             } else {
                 this.renderable.setCurrentAnimation("idle");
                 this.moving = isMoving;
-                console.log("not moving");
             }
         }
 
