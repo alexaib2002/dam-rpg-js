@@ -26,15 +26,29 @@
                 </div>
 
                 <div class="player-input">
-                    <div class="character">
-                        <img src="/src/sprites/warrior.png" id="warrior" width="250" height="300">
-                    </div>
+                   
                     <div class="form">
                         <div class="nickname">
                             <h1> Choose nickname </h1>
+                            <p></p>
+                            <div class="character">
+                                <img src="/src/sprites/warrior.png" id="warrior" width="250" height="200" style="float:right ;" >
+                            </div>
                             <form>
                                 <input type="text" id="nickname" name="Nname"><br>
+                               
                             </form>
+                            <h1> E-Mail </h1>
+                            <form>
+                                <input type="text" id="email" name="email"><br>
+                            </form>
+                            <h1> Password </h1>
+                            <form>
+                                <input type="password" id="password" name="password"><br>
+                            </form>
+                           
+
+
                         </div>
 
                         <div class="gender">
@@ -60,6 +74,17 @@
                                 <label for="female">Female</label>
                                 <input type="radio" id="female" name="Gender" value="Female">
                             </form>
+                            
+                        </div>
+                        <div class="classes">
+                            <h1> Classes </h1>
+                            <p></p>
+                                <label for="warrior">Warrior</label>
+                                <input type="radio" id="warrior" name="Classes" value="Warrior" checked>
+                                <label for="Archer">Archer</label>
+                                <input type="radio" id="archer" name="Classes" value="Archer">
+                                <label for="Mage">Mage</label>
+                                <input type="radio" id="mage" name="Classes" value="Mage">
                         </div>
                     </div>
                 </div>
