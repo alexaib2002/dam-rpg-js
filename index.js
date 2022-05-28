@@ -3,6 +3,7 @@ import { BattleScreen } from "/js/screens/battle.js";
 import EndScreen from '/js/screens/placeholderEnd.js';
 import OverworldScreen from "/js/screens/overworld.js";
 import DataManifest from "/js/resources.js";
+import EnemySpawn from "/js/entities/overworld/enemySpawn.js";
 import Player from "/js/entities/player.js";
 
 import OverworldPlayer from "/js/entities/overworld/owPlayer.js";
@@ -32,6 +33,7 @@ var gameController = {
 
         me.loader.preload(DataManifest, () => {
             me.pool.register("EntPlayer", OverworldPlayer);
+            me.pool.register("EntEnemySpawn", EnemySpawn);
 
             this.texture = new me.TextureAtlas([
                 me.loader.getJSON("UI_Assets-0"),

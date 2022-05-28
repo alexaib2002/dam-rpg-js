@@ -18,10 +18,14 @@ export default class Player extends BattleEntity {
                 },
                 sprite: "player",
                 defenseval: "10"
-            }, 5
+            }
         );
         this.level = 1;
         this.exp = 0;
+        this.pos = {
+            x: 0,
+            y: 0
+        }
     }
 
     attack() {

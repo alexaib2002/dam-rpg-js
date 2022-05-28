@@ -8,6 +8,11 @@ export default class OverworldPlayer extends me.Entity {
         super(x, y, settings);
 
         this.body.collisionType = me.collision.types.PLAYER_OBJECT;
+        this.body.setCollisionMask(
+            me.collision.types.WORLD_SHAPE |
+            me.collision.types.COLLECTABLE_OBJECT
+        );
+
         this.moving = false;
 
         // walking & jumping speed
@@ -87,12 +92,16 @@ export default class OverworldPlayer extends me.Entity {
                 this.moving = isMoving;
             }
         }
+        gameController.player.pos = this.pos;
 
         return (super.update(dt) || isMoving);
     }
 
-    onCollision() {
-        return true;
+    onCollision(response, other) {
+        if (response.b.body.collisionType === me.collision.types.WORLD_SHAPE) {
+            return true;
+        }
+        return false;
     }
 
 }
