@@ -10,7 +10,8 @@ export default class OverworldPlayer extends me.Entity {
         this.body.collisionType = me.collision.types.PLAYER_OBJECT;
         this.body.setCollisionMask(
             me.collision.types.WORLD_SHAPE |
-            me.collision.types.COLLECTABLE_OBJECT
+            me.collision.types.COLLECTABLE_OBJECT |
+            me.collision.types.ACTION_OBJECT
         );
 
         this.moving = false;
