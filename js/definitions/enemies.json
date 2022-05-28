@@ -4,14 +4,16 @@
 		"health": 100,
 		"attacks": ["bash", "kick"],
 		"sprite": "zombie",
-		"scaleFactor": 0.85
+		"scaleFactor": 0.85,
+		"defenseval" : 5
 	},
 	"enemy_01": {
 		"name": "Slime",
 		"health": 45,
 		"attacks": ["bash"],
 		"sprite": "slime",
-		"scaleFactor": 0.25
+		"scaleFactor": 0.25,
+		"defenseval" : 5
 	},
 
 	"enemy_02": {
@@ -19,7 +21,8 @@
 		"health": 75,
 		"attacks": ["cut"],
 		"sprite": "skeleton",
-		"scaleFactor": 0.85
+		"scaleFactor": 0.85,
+		"defenseval" : 5
 	},
 
 	"enemy_03": {
@@ -27,22 +30,25 @@
 		"health": 50,
 		"attacks": ["punch"],
 		"sprite": "goblin",
-		"scaleFactor": 0.85
+		"scaleFactor": 0.85,
+		"defenseval" : 5
 	},
-	
+
 	"enemy_04": {
 		"name": "Ghost",
 		"health": 150,
 		"attacks": ["bash", "kick"],
-		"sprite": "ghost"
+		"sprite": "ghost",
+		"defenseval" : 5
 	},
-	
+
 	"enemy_05": {
 		"name": "Acid Slime",
 		"health": 70,
 		"attacks": ["spit", "bash"],
 		"sprite": "acid-slime",
-		"scaleFactor": 0.85
+		"scaleFactor": 0.85,
+		"defenseval" : 5
 	},
 
 	"enemy_06": {
@@ -50,7 +56,8 @@
 		"health": 100,
 		"attacks": ["shoot", "bash"],
 		"sprite": "skeleton-archer",
-		"scaleFactor": 0.85
+		"scaleFactor": 0.85,
+		"defenseval" : 5
 	},
 
 	"enemy_07": {
@@ -62,6 +69,7 @@
 		"offset": {
 			"x": 0,
 			"y": 80
-		}
+		},
+		"defenseval" : 5
 	}
 }

@@ -4,8 +4,8 @@ import { battleController } from "/js/screens/battle.js";
 import BattleEntity from "/js/entities/battleEntity.js";
 
 export default class BattleEnemy extends BattleEntity {
-    constructor(definition, defense) {
-        super(definition, defense);
+    constructor(definition) {
+        super(definition);
         let offset = definition.offset || {
             "x": 0,
             "y": 0

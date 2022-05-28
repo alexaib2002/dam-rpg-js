@@ -53,6 +53,7 @@ var gameController = {
     },
 
     player: new Player(),
+    enemy: null
 
 }
 export default gameController;

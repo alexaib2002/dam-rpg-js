@@ -5,8 +5,6 @@ import BattleEnemy from '/js/entities/enemy.js';
 import gameController from '../../index.js';
 import BattleBehaviours from '/js/entities/battleBehaviour.js';
 
-var enemy // FIXME enemy should be passed from overworld
-
 var availableActions = [
     "Attack",
     "Defend",
@@ -17,16 +15,15 @@ var availableActions = [
 function logEntitiesHealth() {
     console.log("------Debugger event:------");
     console.log(`Player health: ${gameController.player.health}`);
-    console.log(`Enemy health: ${enemy.health}`);
+    console.log(`Enemy health: ${gameController.enemy.health}`);
     console.log("---------------------------");
 }
 
 export class BattleScreen extends me.Stage {
-
     onResetEvent() {
         this.initUserInterface();
-        this.initEnemies();
-        battleController.onload();
+        this.initEnemy(gameController.enemy);
+        battleController.onload(gameController.enemy);
     }
 
     initUserInterface() {
@@ -57,18 +54,13 @@ export class BattleScreen extends me.Stage {
         me.game.world.addChild(panel, 1);
     }
 
-    initEnemies() {
-        let placeholder_enemy_data = me.loader.getJSON("EnemyDefinition").enemy_07;
-        placeholder_enemy_data.defenseval = 5; // FIXME hardcoded defense value
-        enemy = new BattleEnemy(placeholder_enemy_data, 5); // FIXME hardcoded defense
-        console.log(`BattleScreen: A wild ${enemy.name} attacks!!`);
-        console.log(enemy);
-        enemyController.onload(enemy);
+    initEnemy(enemyJSONData) {
+        gameController.enemy = new BattleEnemy(enemyJSONData);
+        console.log(`BattleScreen: A wild ${gameController.enemy.name} attacks!!`);
     }
 }
 
 export var battleController = {
-
     playerTurn: false,
 
     // battle classes
@@ -77,7 +69,6 @@ export var battleController = {
     onload: function () {
         console.log("Battle controller: I have been initialized");
         this.passTurn();
-        this.enemy = enemy; // FIXME ugly code, should be passed from overworld to battleController constructor
     },
 
     onActionSelected: function (buttonName) {
@@ -100,12 +91,6 @@ export var battleController = {
 }
 
 var enemyController = {
-    enemy: null,
-
-    onload: function (enemy) {
-        this.enemy = enemy;
-    },
-
     onTurnReceived: function () {
         // TODO determine what action enemy should take
         console.log("Enemy controller: Received the turn");
@@ -152,14 +137,14 @@ var enemyController = {
         var attackFunctions = {
 
             randomAttack: function (){
-                let attackProbability = Math.floor(Math.random() * Object.keys(enemy.attacks).length);
+                let attackProbability = Math.floor(Math.random() * Object.keys(gameController.enemy.attacks).length);
                 console.log(`${attackProbability} is the attack magic number`);
-                let randomAttackName = enemy.attacks[attackProbability];
+                let randomAttackName = gameController.enemy.attacks[attackProbability];
                 chosenAttack = attackDefinition[randomAttackName];
             },
 
             attackWithHighestDamage: function () {
-                enemy.attacks.forEach(element => {
+                gameController.enemy.attacks.forEach(element => {
                     let enemyAttack = attackDefinition[element];
                     console.log(`Enemy controller: I have ${element} attack`);
                     if (chosenAttack === undefined || chosenAttack.damage < enemyAttack.damage) {
@@ -169,8 +154,7 @@ var enemyController = {
             }
 
         }
-
-        console.log(Object.keys(enemy.attacks).length)
+        console.log(Object.keys(gameController.enemy.attacks).length)
         if (clever) { // determine attack based on getting highest damage value
             console.log("Enemy controller: I'm clever");
             attackFunctions.attackWithHighestDamage();
@@ -179,14 +163,14 @@ var enemyController = {
             attackFunctions.randomAttack();
         }
         console.log(chosenAttack);
-        enemy.attackDamageValue = chosenAttack.damage;
+        gameController.enemy.attackDamageValue = chosenAttack.damage;
 
         this.onActionSelected("attack");
 
     },
 
     onActionSelected: function (action) {
-        enemy[action]();
+        gameController.enemy[action]();
         logEntitiesHealth();
         battleController.passTurn();
     }
