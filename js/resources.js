@@ -72,6 +72,7 @@ const DataManifest = [
     { name: "battle-theme-intro", type: "audio", src: "src/audio/battle-theme/" },
     { name: "battle-theme-loop", type: "audio", src: "src/audio/battle-theme/" },
     { name: "button1", type: "audio", src: "src/audio/ui-effects/" },
+    { name: "swing", type: "audio", src: "src/audio/ui-effects/" },
 
 
 ];

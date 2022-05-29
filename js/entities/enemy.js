@@ -11,17 +11,17 @@ export default class BattleEnemy extends BattleEntity {
             "y": 0
         };
 
-        let enemySprite = new me.Sprite(
+        this.sprite = new me.Sprite(
             me.game.viewport.width / 2 + offset.x,
             me.game.viewport.height / 2 + offset.y,
             {
                 image: me.loader.getImage(this.sprite),
             });
-        enemySprite.scale(
+        this.sprite.scale(
             definition.scaleFactor,
             definition.scaleFactor,
         );
-        me.game.world.addChild(enemySprite, 0);
+        me.game.world.addChild(this.sprite, 0);
     }
 
     attack() {
