@@ -52,8 +52,7 @@ var gameController = {
         });
     },
 
-    player: new Player(),
-    enemy: null
+    player: new Player()
 
 }
 export default gameController;

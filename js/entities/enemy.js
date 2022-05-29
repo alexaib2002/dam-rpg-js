@@ -30,7 +30,7 @@ export default class BattleEnemy extends BattleEntity {
         );
         if (attackResult != null) {
             console.log(`Enemy controller: You have lost to ${attackResult.name}`);
-            me.state.change(gameController.STATE_END, "Enemy won");
+            battleController.endBattle("defeated");
         }
     }
 

@@ -31,11 +31,11 @@ export default class Player extends BattleEntity {
     attack() {
         gameController.player.attackDamageValue = gameController.player.attacks.std_attack.damage; // FIXME hardcoded
         let attackResult = battleController.battleBehaviours.attack(
-            gameController.player, gameController.enemy
+            gameController.player, battleController.enemy
         );
         if (attackResult != null) {
             console.log(`Battle controller: You defeated ${attackResult.name}`);
-            me.state.change(gameController.STATE_END, "Player won");
+            battleController.endBattle("won");
         }
     }
 
@@ -52,7 +52,7 @@ export default class Player extends BattleEntity {
 
     flee() {
         console.log("You fled!");
-        me.state.change(gameController.STATE_OVERWORLD);
+        battleController.endBattle("fled");
     }
 
 }

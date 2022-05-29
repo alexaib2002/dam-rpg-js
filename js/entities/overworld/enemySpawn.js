@@ -25,8 +25,7 @@ export default class EnemySpawn extends me.Entity {
         // if (Math.random() < this.rate * rateFactor) {
         if (Math.random() < rateFactor) {
             this.canUpdate = false;
-            gameController.enemy = this.selectRandomEnemy();
-            me.state.change(gameController.STATE_BATTLE);
+            me.state.change(gameController.STATE_BATTLE, this.selectRandomEnemy());
         }
     }
 
