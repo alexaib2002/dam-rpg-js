@@ -27,10 +27,6 @@ function logEntitiesHealth() {
     console.log("---------------------------");
 }
 
-function playBgAudio() {
-    me.audio.playTrack("battle-theme-loop");
-}
-
 
 function fillHealth() {
     statsPanel.scaleEnemyHealth(enemy.maxHealth, enemy.health);
@@ -43,7 +39,7 @@ export class BattleScreen extends me.Stage {
         this.initUserInterface();
         this.initEnemy(enemyJSON);
         battleController.onload();
-        this.initBgAudio();
+        this.initAudio();
     }
 
     initUserInterface() {
@@ -86,9 +82,13 @@ export class BattleScreen extends me.Stage {
         me.game.world.addChild(statsPanel);
     }
 
-    initBgAudio() {
-        console.log("Battel Audio: I have been initialized")
-        me.audio.play("battle-theme-intro", false, playBgAudio);
+    initAudio() {
+        me.audio.stop("overworld-theme");
+        me.audio.play("battle-theme-intro", false, function () {
+            if (!this.battleEnded) { // fixes multiple playbacks when the battle ends and the intro is still playing
+                me.audio.playTrack("battle-theme-loop", true);
+            }
+        });
     }
 
 }
@@ -130,6 +130,8 @@ export var battleController = {
 
     endBattle: function (reason) {
         console.log(`Battle controller: Battle ended: ${reason}`);
+        me.audio.stop("battle-theme-intro");
+        me.audio.stop("battle-theme-loop");
         switch (reason) {
             case "fled":
                 me.state.change(gameController.STATE_OVERWORLD, gameController.curr_room);
@@ -145,6 +147,7 @@ export var battleController = {
                 break;
         }
         this.battleEnded = true;
+
     }
 }
 

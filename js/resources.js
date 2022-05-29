@@ -70,6 +70,9 @@ const DataManifest = [
     { name: "forest-defender", type: "image", src: "/src/sprites/ingame/forest-defender.png" },
 
     // Sound
+    { name: "title-screen-theme", type: "audio", src: "src/audio/" },
+    { name: "overworld-theme", type: "audio", src: "src/audio/" },
+    { name: "battle-theme-intro", type: "audio", src: "src/audio/battle-theme/" },
     { name: "battle-theme-intro", type: "audio", src: "src/audio/battle-theme/" },
     { name: "battle-theme-loop", type: "audio", src: "src/audio/battle-theme/" },
     { name: "button1", type: "audio", src: "src/audio/ui-effects/" },

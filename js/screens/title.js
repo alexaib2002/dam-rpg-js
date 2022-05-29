@@ -18,6 +18,7 @@ export default class BattleScreen extends me.Stage {
 
     onResetEvent() {
         this.initBackground();
+        this.initAudio();
 
         me.input.bindKey(me.input.KEY.ENTER, "game-start", true);
 
@@ -63,6 +64,10 @@ export default class BattleScreen extends me.Stage {
         this.bgEntity.body.ignoreGravity = true;
 
         me.game.world.addChild(this.bgEntity, -100);
+    }
+
+    initAudio() {
+        me.audio.playTrack("title-screen-theme");
     }
 
     update(dt) {

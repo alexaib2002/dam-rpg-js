@@ -4,7 +4,7 @@ export default class OverworldScreen extends me.Stage {
 
     onResetEvent(room) {
         me.level.load(room, {});
-
+        this.initAudio();
 
         // override engine gravity calculations
         me.game.world.gravity = {
@@ -15,4 +15,8 @@ export default class OverworldScreen extends me.Stage {
 
     }
 
+    initAudio() {
+        me.audio.stop("title-screen-theme");
+        me.audio.playTrack("overworld-theme");
+    }
 }
