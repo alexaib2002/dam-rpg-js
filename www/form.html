@@ -1,17 +1,19 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset='utf-8'>
     <title>RPG Game JS</title>
     <title>Page Title</title>
     <meta id='viewport' name='viewport' content='width=device-width, initial-scale=1'>
     <link rel='stylesheet' type='text/css' media='screen' href='form.css'>
-    <link rel="shortcut icon" href="favicon.png" type="image/x-icon"> 
+    <link rel="shortcut icon" href="favicon.png" type="image/x-icon">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
     <script type="text/javascript" src="form.js"></script>
     <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet" />
 </head>
+
 <body>
 
     <main>
@@ -25,167 +27,92 @@
                 </div>
 
                 <div class="player-input">
-                   
+
                     <div class="form">
+
                         <div class="nickname">
                             <h1> Choose nickname </h1>
                             <p></p>
                             <div class="character">
-                                <img src="../src/sprites/warrior.png" id="warrior" width="250" height="200" style="float:right" >
+                                <img src="../src/sprites/warrior.png" id="warrior" width="250" height="200"
+                                    style="float:right">
                             </div>
-                            <form onsubmit="return validateForm()" name="mainForm">
+                            <form name="mainForm">
                                 <input type="text" id="nickname" name="nName"><br>
-                               
+
                                 <h1> E-Mail </h1>
-                        
+
                                 <input type="text" id="email" name="email"><br>
-                            
+
                                 <h1> Password </h1>
-                        
+
                                 <input type="password" id="password" name="password"><br>
-
-        
                         </div>
+
                         <div class="wrapper">
-                        <div class="gender">
-                            <h1> Gender </h1>
-                            <!-- JQuery script that change character according to the selected gender -->
-                            <script>
-                               
 
-                            </script>
-
-                        
+                            <div class="gender">
+                                <h1> Gender </h1>
                                 <label for="male">Male</label>
                                 <input type="radio" id="male" name="Gender" value="Male" checked>
                                 <label for="female">Female</label>
                                 <input type="radio" id="female" name="Gender" value="Female">
-                            
-                            
-                        </div>
-                        <div class="classes">
-                            <h1> Classes </h1>
-                            <p></p>
+                            </div>
+
+                            <div class="classes">
+                                <h1> Classes </h1>
+                                <p></p>
                                 <label for="warrior">Warrior</label>
                                 <input type="radio" id="warrior" name="Classes" value="Warrior" checked>
                                 <label for="Archer">Archer</label>
                                 <input type="radio" id="archer" name="Classes" value="Archer">
                                 <label for="Mage">Mage</label>
                                 <input type="radio" id="mage" name="Classes" value="Mage">
+                            </div>
+
                         </div>
-                    </div>
 
                         <div class="textBox">
                             <h1> About your character </h1>
-                            
-                                <textarea id="textBox" rows="4" cols="50"></textarea>
-                            
-                            
+                            <textarea id="textBox" rows="4" cols="50"></textarea>
                         </div>
 
                         <div class="playstyle">
-                                <label for="playstyle">Playstyle</label>
-                                <select id="playstyle" name="playstyle">
-                                    <option value="1">Aggressive</option>
-                                    <option value="2">Defensive</option>
-                                    <option value="3">Balanced</option>
-                                </select>
-                            
+                            <label for="playstyle">Playstyle</label>
+                            <select id="playstyle" name="playstyle">
+                                <option value="1">Aggressive</option>
+                                <option value="2">Defensive</option>
+                                <option value="3">Balanced</option>
+                            </select>
 
-                           <div class="playertype">
+
+                            <div class="playertype">
                                 <h1> Player type </h1>
-                            
-                                    <label for="Casual">Casual</label>
-                                    <input type="checkbox" id="casual" name="casual" value="Casual">
-                                    <label for="Average">Average</label>
-                                    <input type="checkbox" id="average" name="average" value="Average">
-                                    <label for="Hardcore">Hardcore</label>
-                                    <input type="checkbox" id="hardcore" name="hardcore" value="Hardcore">
+                                <label for="Casual">Casual</label>
+                                <input type="radio" id="casual" name="playertype" value="Casual">
+                                <label for="Average">Average</label>
+                                <input type="radio" id="average" name="playertype" value="Average">
+                                <label for="Hardcore">Hardcore</label>
+                                <input type="radio" id="hardcore" name="playertype" value="Hardcore">
                                 </form>
                             </div>
 
-
-                           </div> 
-
                         </div>
+
                     </div>
+
                 </div>
 
-               
-                <div class="start" onClick="document.forms['mainForm'].submit();">
-                        <h1> Start </h1>
-                    </div>
-                
+                <div id="submit" class="start" onClick name="submit">
+                    <h1> Start </h1>
+                </div>
 
             </div>
 
         </div>
 
-
-
     </main>
 
 </body>
+
 </html>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-

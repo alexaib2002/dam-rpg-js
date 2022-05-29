@@ -1,43 +1,6 @@
 
-function validateForm() {
-    
-    var x = document.forms["mainForm"]["nName"].value;
-    if (x == "") {
-        alert("Name must be filled out");
-        return false;
-    }
-    
-    var a = document.forms["mainForm"]["email"].value;
-    if (a == "") {
-        alert("Email must be filled out");
-        return false;
-    }
-    
-    var i = document.forms["form"]["password"].value;
-    if (i == "") {
-        alert("Password must be filled out");
-        return false;
-    }
-
-    // check for only 1 checkbox checked and no more than 1 
-    var checkboxes = document.getElementsByName('playertype');
-    var checked = false;
-    for (var i = 0; i < checkboxes.length; i++) {
-        if (checkboxes[i].checked) {
-            if (checked) {
-                alert("You can only select player type");
-                return false;
-            }
-            checked = true;
-        }
-    }
-    if (!checked) {
-        alert("You must select at least one player type");
-        return false;
-    }
-}
-
 $(document).ready(function () {
+    // Change image according to gender
     $("input[name='Gender']").change(function () {
         var val = $("input[name='Gender']:checked").val();
         var pic = document.getElementById('warrior');
@@ -47,15 +10,47 @@ $(document).ready(function () {
             pic.src = "../src/sprites/warrior.png";
         }
     });
+
+    // Check if form is not empty
+    $("#submit").click(function () {
+        var x = document.forms["mainForm"]["nName"].value;
+        if (x == "") {
+            alert("Name must be filled out");
+            return false;
+        }
+
+        var a = document.forms["mainForm"]["email"].value;
+        if (a == "") {
+            alert("Email must be filled out");
+            return false;
+        }
+
+        var i = document.forms["mainForm"]["password"].value;
+        if (i == "") {
+            alert("Password must be filled out");
+            return false;
+        }
+
+        var checkboxes = document.getElementsByName('playertype');
+        var checked = false;
+        for (var i = 0; i < checkboxes.length; i++) {
+            if (checkboxes[i].checked) {
+                if (checked) {
+                    alert("You can only select player type");
+                    return false;
+                }
+                checked = true;
+            }
+        }
+        if (!checked) {
+            alert("You must select at least one player type");
+            return false;
+        }
+    });
+
 });
 
-disableRefreshOnSubmit();
 
-function disableRefreshOnSubmit() {
-    var form = document.getElementById("examenJS");
-    function handleForm(event) { event.preventDefault(); }
-    form.addEventListener('submit', handleForm);
-}
 
 
 
