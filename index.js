@@ -53,6 +53,7 @@ var gameController = {
         });
     },
 
+    curr_room: undefined,
     player: new Player()
 
 }

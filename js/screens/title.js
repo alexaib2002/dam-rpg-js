@@ -97,6 +97,6 @@ export default class BattleScreen extends me.Stage {
 
 var buttonActionNameSpace = {
     gameStart: function() {
-        me.state.change(gameController.STATE_OVERWORLD);
+        me.state.change(gameController.STATE_OVERWORLD, "room11_2");
     }
 }

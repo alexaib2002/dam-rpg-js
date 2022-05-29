@@ -99,10 +99,10 @@ export var battleController = {
         console.log(`Battle controller: Battle ended: ${reason}`);
         switch (reason) {
             case "fled":
-                me.state.change(gameController.STATE_OVERWORLD, true);
+                me.state.change(gameController.STATE_OVERWORLD, gameController.curr_room);
                 break;
             case "won":
-                me.state.change(gameController.STATE_OVERWORLD, true);
+                me.state.change(gameController.STATE_OVERWORLD, gameController.curr_room);
                 break;
             case "defeated":
                 me.state.change(gameController.STATE_END, "Enemy won");
