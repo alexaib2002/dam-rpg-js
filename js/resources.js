@@ -47,6 +47,11 @@ const DataManifest = [
     { name: "room17", type: "tmx", src: "/src/tilemap/Room_17.tmx" },
     { name: "room18", type: "tmx", src: "/src/tilemap/Room_18.tmx" },
 
+    // Title Screen assets
+    { name: "title-bg", type: "image", src: "/src/img/title-bg.png" },
+    { name: "title-logo", type: "image", src: "/src/img/title-logo.png" },
+    { name: "start-text", type: "image", src: "/src/img/start-text.png" },
+
     // Overworld assets
     { name: "player", type: "image", src: "/src/img/OverworldPlayer/player.png" },
     { name: "player", type: "json", src: "/src/img/OverworldPlayer/player.json" },
