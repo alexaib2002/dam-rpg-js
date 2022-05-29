@@ -16,11 +16,18 @@ var availableActions = [
     "Flee"
 ]
 
+var enemyStatsPanel;
+var enemyFullHealth;
+
 function logEntitiesHealth() {
     console.log("------Debugger event:------");
     console.log(`Player health: ${gameController.player.health}`);
     console.log(`Enemy health: ${enemy.health}`);
     console.log("---------------------------");
+}
+
+function fillEnemyHealth(enemyHealth) {
+    enemyStatsPanel.scaleEnemyHealth(enemyFullHealth, enemyHealth);
 }
 
 export class BattleScreen extends me.Stage {
@@ -44,12 +51,12 @@ export class BattleScreen extends me.Stage {
             me.game.viewport.height / backgroundImage.height
         );
         me.game.world.addChild(backgroundImage, -100);
-        
+
         // init ui elements
         var buttonsPanel = new BattleUIContainer(
             10, 650, 1020, 120 // FIXME hardcoded
         );
-        
+
         // FIXME more hardcode
         buttonsPanel.addChild(new ButtonUI(90, 40, "blue", availableActions[0]));
         buttonsPanel.addChild(new ButtonUI(300, 40, "yellow", availableActions[1]));
@@ -57,14 +64,8 @@ export class BattleScreen extends me.Stage {
         buttonsPanel.addChild(new ButtonUI(720, 40, "red", availableActions[3]));
 
         me.game.world.addChild(buttonsPanel, 1);
-
-        var enemyStatsPanel = new  enemyStatsUIContainer(
-            470, 50, 6, 6
-        );
-        enemyStatsPanel.fillEnemyHealth();
-        me.game.world.addChild(enemyStatsPanel);
     }
-    
+
     initEnemies() {
         let placeholder_enemy_data = me.loader.getJSON("EnemyDefinition").enemy_07;
         placeholder_enemy_data.defenseval = 5; // FIXME hardcoded defense value
@@ -72,6 +73,17 @@ export class BattleScreen extends me.Stage {
         console.log(`BattleScreen: A wild ${enemy.name} attacks!!`);
         console.log(enemy);
         enemyController.onload(enemy);
+
+        enemyStatsPanel = new enemyStatsUIContainer(
+            470, 50, 6, 6
+        );
+        enemyStatsPanel.setEnemyName(enemy.name);
+        enemyStatsPanel.setEnemyHealthText(enemy.health, enemy.health);
+
+        enemyFullHealth = enemy.health;
+
+
+        me.game.world.addChild(enemyStatsPanel);
     }
 }
 
@@ -91,6 +103,7 @@ export var battleController = {
     onActionSelected: function (buttonName) {
         if (this.playerTurn) {
             gameController.player[buttonName.toLowerCase()]();
+            fillEnemyHealth(enemy.health);
             logEntitiesHealth();
             this.passTurn();
         } else {
@@ -159,7 +172,7 @@ var enemyController = {
         var attackDefinition = me.loader.getJSON("AttackDefinition");
         var attackFunctions = {
 
-            randomAttack: function (){
+            randomAttack: function () {
                 let attackProbability = Math.floor(Math.random() * Object.keys(enemy.attacks).length);
                 console.log(`${attackProbability} is the attack magic number`);
                 let randomAttackName = enemy.attacks[attackProbability];
