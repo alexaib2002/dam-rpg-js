@@ -16,7 +16,11 @@ class BattleBehaviours {
             console.log(`${defender.name} has protection`);
             damage -= DEFENSE_PROTECTION
         }
-        defender.health -= clamp(damage, MIN_DAMAGE, MAX_DAMAGE);
+        defender.health = clamp(
+                defender.health - clamp(damage, MIN_DAMAGE, MAX_DAMAGE),
+                defender.minHealth,
+                defender.maxHealth
+        );
         if (defender.health <= 0) {
             console.log(`${defender.name} is dead!`);
             return attacker;
@@ -32,7 +36,7 @@ class BattleBehaviours {
 
 
     healthRecover(entity) {
-        entity.health += HEALTH_RECOVER;
+        entity.health = clamp(entity.health + HEALTH_RECOVER, entity.minHealth, entity.maxHealth);
         console.log(`${entity.name} recovered ${HEALTH_RECOVER} health`);
     };
 
