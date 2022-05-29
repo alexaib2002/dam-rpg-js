@@ -32,7 +32,7 @@ export class BattleScreen extends me.Stage {
         this.initUserInterface();
         this.initEnemy(enemyJSON);
         battleController.onload(enemyJSON);
-        this.initBgAudio();
+        this.initAudio();
     }
 
     initUserInterface() {
@@ -68,8 +68,8 @@ export class BattleScreen extends me.Stage {
         console.log(`BattleScreen: A wild ${enemy.name} attacks!!`);
     }
 
-    initBgAudio() {
-        console.log("Battel Audio: I have been initialized")
+    initAudio() {
+        me.audio.stop("overworld-theme");
         me.audio.play("battle-theme-intro", false, playBgAudio);
     }
 
@@ -126,6 +126,8 @@ export var battleController = {
                 break;
         }
         this.battleEnded = true;
+        me.audio.stop("battle-theme-loop");
+
     }
 }
 

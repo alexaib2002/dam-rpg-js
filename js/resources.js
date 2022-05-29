@@ -6,7 +6,7 @@ const DataManifest = [
     { name: "UI_Assets-0", type: "image", src: "/src/img/UI_Assets-0.png" },
     { name: "UI_Assets-1", type: "image", src: "/src/img/UI_Assets-1.png" },
     { name: "UI_Assets-2", type: "image", src: "/src/img/UI_Assets-2.png" },
-    { name: "battle-bg", type: "image", src: "/src/img/background.png" },
+    { name: "battle-bg", type: "image", src: "/src/img/background.jpeg" },
 
     // JSON texturePacker Atlas
     { name: "UI_Assets-0", type: "json", src: "/src/img/UI_Assets-0.json" },
@@ -69,6 +69,9 @@ const DataManifest = [
     { name: "forest-defender", type: "image", src: "/src/sprites/ingame/forest-defender.png" },
 
     // Sound
+    { name: "title-screen-theme", type: "audio", src: "src/audio/" },
+    { name: "overworld-theme", type: "audio", src: "src/audio/" },
+    { name: "battle-theme-intro", type: "audio", src: "src/audio/battle-theme/" },
     { name: "battle-theme-intro", type: "audio", src: "src/audio/battle-theme/" },
     { name: "battle-theme-loop", type: "audio", src: "src/audio/battle-theme/" },
     { name: "button1", type: "audio", src: "src/audio/ui-effects/" },
