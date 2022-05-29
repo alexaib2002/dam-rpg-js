@@ -33,6 +33,8 @@ const DataManifest = [
 
     // Title Screen assets
     { name: "title-bg", type: "image", src: "/src/img/title-bg.png" },
+    { name: "title-logo", type: "image", src: "/src/img/title-logo.png" },
+    { name: "start-text", type: "image", src: "/src/img/start-text.png" },
 
     // Overworld assets
     { name: "player", type: "image", src: "/src/img/OverworldPlayer/player.png" },

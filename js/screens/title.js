@@ -1,4 +1,5 @@
 import * as me from "https://esm.run/melonjs";
+import gameController from "/index.js";
 
 const bgSpeedFactor = .6;
 
@@ -13,9 +14,31 @@ export default class BattleScreen extends me.Stage {
 
     // global properties
     bgEntity = undefined;
+    startTxt;
 
     onResetEvent() {
         this.initBackground();
+
+        me.input.bindKey(me.input.KEY.ENTER, "game-start", true);
+
+        // TODO add title logo
+        let titleSprite = new me.Sprite(
+            me.game.viewport.width / 2, me.game.viewport.height / 4, {
+                image: me.loader.getImage("title-logo"),
+            }
+        );
+        titleSprite.anchorPoint.set(0.5, 0.5);
+        titleSprite.scale(.8, .8);
+        me.game.world.addChild(titleSprite, 100);
+        // TODO wait for user input to start game
+        this.startTxt = new me.Sprite(
+            me.game.viewport.width / 2, me.game.viewport.height / 2 + me.game.viewport.height / 3, {
+                image: me.loader.getImage("start-text"),
+            }
+        );
+        this.startTxt.anchorPoint.set(0.5, 0.5);
+        this.startTxt.scale(.3, .3);
+        me.game.world.addChild(this.startTxt, 100);
     }
 
     initBackground() {
@@ -43,7 +66,7 @@ export default class BattleScreen extends me.Stage {
     }
 
     update(dt) {
-        console.log(`bgEntity.pos.x: ${this.bgEntity.pos.x}`);
+        // FIXME switch case shouldn't be on update function, trigger event instead to change animation state
         switch (this.animationCurrentState) {
             case this.animationState[0]:
                 if (this.bgEntity.pos.x >= this.limRight) {
@@ -61,7 +84,19 @@ export default class BattleScreen extends me.Stage {
                 }
                 break;
         }
+
+        if (me.input.isKeyPressed("game-start")) {
+            // TODO should check is form has been filled
+            buttonActionNameSpace.gameStart();
+        }
+
         return super.update(dt);
     }
 
+}
+
+var buttonActionNameSpace = {
+    gameStart: function() {
+        me.state.change(gameController.STATE_OVERWORLD);
+    }
 }
