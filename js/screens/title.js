@@ -1,7 +1,7 @@
 import * as me from "https://esm.run/melonjs";
 import gameController from "/index.js";
 
-const bgSpeedFactor = .6;
+const bgSpeedFactor = .2;
 
 export default class BattleScreen extends me.Stage {
 
