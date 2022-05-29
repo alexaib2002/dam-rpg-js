@@ -2,6 +2,7 @@ const DataManifest = [
     // Entity definitions
     { name: "AttackDefinition", type: "json", src: "/js/definitions/attacks.json" },
     { name: "EnemyDefinition", type: "json", src: "/js/definitions/enemies.json" },
+
     // UI Texture
     { name: "UI_Assets-0", type: "image", src: "/src/img/UI_Assets-0.png" },
     { name: "UI_Assets-1", type: "image", src: "/src/img/UI_Assets-1.png" },
@@ -74,6 +75,11 @@ const DataManifest = [
     { name: "button1", type: "audio", src: "src/audio/ui-effects/" },
     { name: "swing", type: "audio", src: "src/audio/ui-effects/" },
 
+    // Sprites for enemy stats
+    { name: "enemyStats-frame", type: "image", src: "src/sprites/healthbar/enemyStats-frame.png"},
+
+    // Heart sprite
+    { name: "heart", type: "image", src: "src/sprites/healthbar/heart.png"},
 
 ];
 
