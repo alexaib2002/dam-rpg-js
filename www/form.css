@@ -1,4 +1,10 @@
-html,
+html *
+{
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 12px;
+    color: #000000;
+}
+
 body {
     width: 100%;
     height: 100%;
@@ -101,7 +107,7 @@ div.player-input {
 @media only screen and (max-width: 2512px) {
 
     div.wrapper {
-        width: 500px;
+        width: 550px;
         overflow: hidden; /* will contain if #first is longer than #second */
     }
 
@@ -142,7 +148,7 @@ label {
 
 /* Display start button */
 div.start {
-    width: 95%;
+    width: 40%;
     height: 15%;
 
     display: flex;
@@ -156,12 +162,17 @@ div.start {
 
 /* Start Text Font-Layaut */
 div.start h1 {
-    font-size: 60px;
+    font-size: 40px;
     font-family: monospace;
     color: #aaccff;
     
 }
 
-div.classes {
-    font-size: xx-small;
+div.playertype {
+    width: 95%;
+    height: 10%;
+}
+
+div.playstyle {
+    width: 10px;
 }
