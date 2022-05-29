@@ -1,0 +1,167 @@
+html,
+body {
+    width: 100%;
+    height: 100%;
+    margin: 0;
+    padding: 0;
+    background-image:url(https://picfiles.alphacoders.com/478/thumb-1920-478314.png);
+}
+
+
+
+/*border surrounding the web page */
+body {
+    background-color: #000;
+    color: #fff;
+
+    /* Allow mouse dragging. */
+    -moz-user-select: none;
+    -ms-user-select: none;
+    -o-user-select: none;
+    -webkit-user-select: none;
+    user-select: none;
+
+    /* disable touch panning/zooming */
+    -ms-touch-action: none;
+    touch-action: none;
+
+    /* Allow canvas to hit the edges of the browser viewport. */
+    margin: 0;
+}
+
+/*border surrounding the menu content*/
+div.border-content {
+    width: 100%;
+    height: 100%;
+    min-width: 1500px;
+
+   
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    margin: auto;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: auto;
+    /* Hide the gap for font descenders. */
+    display: block;
+}
+    
+
+
+/*menu of contents*/
+div.reg-menu {
+    width: 40%;
+
+
+    height: 70%;
+    padding-top: 2%;
+    padding-bottom: 2%;
+
+    justify-content: center;
+    align-items: center;
+    margin: auto;
+
+    border-radius: 25px;
+    background-color: #f2f2f2;
+}
+
+/* Style the links inside the navigation bar */
+.topnav a {
+  float: left;
+  color: #f2f2f2;
+  text-align: center;
+  padding: 10px 16px;
+  text-decoration: none;
+  font-size: 17px;
+}
+
+/* Game Title Font-Layout */
+
+div.game-title h1 {
+
+    font-size: 50px;
+    font-family: monospace;
+    color: #6adc6a;
+}
+
+/* Display player input name */
+div.player-input {
+    width: 95%;
+    height: 55%;
+
+    margin: auto;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+@media only screen and (max-width: 2512px) {
+
+    div.wrapper {
+        width: 500px;
+        overflow: hidden; /* will contain if #first is longer than #second */
+    }
+
+    div.gender {
+        width: 30%;
+        float: left;
+    }
+
+    div.classes {
+
+        overflow: hidden;
+    }
+}
+
+/* Input Form Layout */
+div.player-input input {
+    border: none;
+    outline: none;
+    display: inline-block;
+    height: 34px;
+    vertical-align: middle;
+    position: relative;
+    bottom: 14px;
+    right: 9px;
+    border-radius: 22px;
+    width: 220px;
+    box-sizing: border-box;
+    padding: 0 18px;
+}
+
+/* Form Text Font-Layout */
+div.player-input h1,
+label {
+    font-size: 30px;
+    font-family: monospace;
+    color: #848484;
+}
+
+/* Display start button */
+div.start {
+    width: 95%;
+    height: 15%;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: auto;
+
+    border-radius: 25px;
+    background-color: #d7f4d7;
+}
+
+/* Start Text Font-Layaut */
+div.start h1 {
+    font-size: 60px;
+    font-family: monospace;
+    color: #aaccff;
+    
+}
+
+div.classes {
+    font-size: xx-small;
+}
