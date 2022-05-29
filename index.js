@@ -2,6 +2,7 @@ import * as me from "https://esm.run/melonjs";
 import { BattleScreen } from "/js/screens/battle.js";
 import EndScreen from '/js/screens/placeholderEnd.js';
 import OverworldScreen from "/js/screens/overworld.js";
+import TitleScreen from "/js/screens/title.js";
 import DataManifest from "/js/resources.js";
 import EnemySpawn from "/js/entities/overworld/enemySpawn.js";
 import Player from "/js/entities/player.js";
@@ -15,16 +16,15 @@ me.device.onReady(function() {
 
 var gameController = {
     // constant states for the game
-    STATE_BATTLE : 1 + me.state.USER,
-    STATE_OVERWORLD : 2 + me.state.USER,
-    STATE_END : 3 + me.state.USER,
+    STATE_BATTLE    : me.state.USER << 1,
+    STATE_OVERWORLD : me.state.USER << 2,
+    STATE_END       : me.state.USER << 3,
 
 
     onload: function () {
         if (!me.video.init(1040, 780, {
             parent : "screen",
             scale : "auto",
-            // scaleMethod : "flex-width", // determines if viewport is scaled with browser window
             renderer : me.video.AUTO
         })) {
             alert("Your browser does not support HTML5 canvas.");
@@ -46,9 +46,10 @@ var gameController = {
             me.state.transition("fade", "#FFFFFF", 250);
 
             me.state.set(this.STATE_BATTLE, new BattleScreen());
+            me.state.set(this.TITLE, new TitleScreen());
             me.state.set(this.STATE_OVERWORLD, new OverworldScreen());
             me.state.set(this.STATE_END, new EndScreen());
-            me.state.change(this.STATE_OVERWORLD);
+            me.state.change(this.TITLE);
         });
     },
 

@@ -31,6 +31,9 @@ const DataManifest = [
     { name: "room01", type: "tmx", src: "/src/tilemap/Room_01.tmx" },
     { name: "room02", type: "tmx", src: "/src/tilemap/Room_02.tmx" },
 
+    // Title Screen assets
+    { name: "title-bg", type: "image", src: "/src/img/title-bg.png" },
+
     // Overworld assets
     { name: "player", type: "image", src: "/src/img/OverworldPlayer/player.png" },
     { name: "player", type: "json", src: "/src/img/OverworldPlayer/player.json" },
