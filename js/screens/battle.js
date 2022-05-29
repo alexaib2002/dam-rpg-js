@@ -1,10 +1,11 @@
 import * as me from 'https://esm.run/melonjs';
 import BattleUIContainer from '../ui/BattleUIContainer.js';
 import { ButtonUI } from '../entities/buttons.js';
-import { enemyStatsUIContainer } from '../ui/EnemyUIContainer.js';
+import { StatsUIContainer } from '../ui/StatsBattleUIContainer.js';
 import BattleEnemy from '/js/entities/enemy.js';
 import gameController from '../../index.js';
 import BattleBehaviours from '/js/entities/battleBehaviour.js';
+import Player from '../entities/player.js';
 
 
 var enemy // FIXME enemy should be passed from overworld
@@ -16,8 +17,9 @@ var availableActions = [
     "Flee"
 ]
 
-var enemyStatsPanel;
+var statsPanel;
 var enemyFullHealth;
+var playerFullHealth;
 
 function logEntitiesHealth() {
     console.log("------Debugger event:------");
@@ -26,14 +28,16 @@ function logEntitiesHealth() {
     console.log("---------------------------");
 }
 
-function fillEnemyHealth(enemyHealth) {
-    enemyStatsPanel.scaleEnemyHealth(enemyFullHealth, enemyHealth);
+function fillHealth() {
+    statsPanel.scaleEnemyHealth(enemyFullHealth, enemy.health);
+    statsPanel.scalePlayerHealth(playerFullHealth, gameController.player.health );
 }
 
 export class BattleScreen extends me.Stage {
 
     onResetEvent() {
         this.initUserInterface();
+        this.initPlayer();
         this.initEnemies();
         battleController.onload();
     }
@@ -66,6 +70,10 @@ export class BattleScreen extends me.Stage {
         me.game.world.addChild(buttonsPanel, 1);
     }
 
+    initPlayer() { 
+        playerFullHealth = gameController.player.health;
+    }
+
     initEnemies() {
         let placeholder_enemy_data = me.loader.getJSON("EnemyDefinition").enemy_07;
         placeholder_enemy_data.defenseval = 5; // FIXME hardcoded defense value
@@ -74,16 +82,16 @@ export class BattleScreen extends me.Stage {
         console.log(enemy);
         enemyController.onload(enemy);
 
-        enemyStatsPanel = new enemyStatsUIContainer(
+        statsPanel = new StatsUIContainer(
             470, 50, 6, 6
         );
-        enemyStatsPanel.setEnemyName(enemy.name);
-        enemyStatsPanel.setEnemyHealthText(enemy.health, enemy.health);
+        statsPanel.setEnemyName(enemy.name);
+        statsPanel.setEnemyHealthText(enemy.health, enemy.health);
 
         enemyFullHealth = enemy.health;
 
 
-        me.game.world.addChild(enemyStatsPanel);
+        me.game.world.addChild(statsPanel);
     }
 }
 
@@ -103,7 +111,7 @@ export var battleController = {
     onActionSelected: function (buttonName) {
         if (this.playerTurn) {
             gameController.player[buttonName.toLowerCase()]();
-            fillEnemyHealth(enemy.health);
+            fillHealth(enemy.health);
             logEntitiesHealth();
             this.passTurn();
         } else {
@@ -209,6 +217,7 @@ var enemyController = {
     onActionSelected: function (action) {
         enemy[action]();
         logEntitiesHealth();
+        fillHealth(gameController.player.health);
         battleController.passTurn();
     }
 }

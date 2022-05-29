@@ -27,6 +27,10 @@ const DataManifest = [
 
     // Sprites for enemy stats 
     { name: "enemyStats-frame", type: "image", src: "src/sprites/healthbar/enemyStats-frame.png"},
+
+    // Heart sprite
+    { name: "heart", type: "image", src: "src/sprites/healthbar/heart.png"},
+
 ];
 
 export default DataManifest;

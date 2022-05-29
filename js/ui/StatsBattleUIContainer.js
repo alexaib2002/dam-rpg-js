@@ -1,6 +1,6 @@
 import * as me from 'https://esm.run/melonjs';
 
-export class enemyStatsUIContainer extends me.Container {
+export class StatsUIContainer extends me.Container {
     constructor(x, y, width, height) {
 
         super(x, y, width, height);
@@ -9,7 +9,8 @@ export class enemyStatsUIContainer extends me.Container {
 
         this.healthBarPosX = 380;
         this.healthBarPosY = 20;
-        this.healthBarWidth = 80;
+        this.healthBarEnemyWidth = 80;
+        this.healthBarPlayerWidth = 80;
         this.healthBarHeight = 12;
 
         // make sure the UI Container bounds are updated
@@ -63,8 +64,12 @@ export class enemyStatsUIContainer extends me.Container {
     }
 
     scaleEnemyHealth(enemyFullHealth, enemyHealth) {
-        this.healthBarWidth = (enemyHealth * 80) / enemyFullHealth;
+        this.healthBarEnemyWidth = (enemyHealth * 80) / enemyFullHealth;
         this.setEnemyHealthText(enemyFullHealth, enemyHealth);
+    }
+
+    scalePlayerHealth(playerFullHealth, playerHealth) {
+        this.healthBarPlayerWidth = (playerHealth * 80) / playerFullHealth;
     }
 
     setEnemyName(enemyName) {
@@ -77,10 +82,12 @@ export class enemyStatsUIContainer extends me.Container {
 
     }
 
+    
+
     draw(renderer) {
         super.draw(renderer);
         renderer.setColor('red');
-        renderer.fillRect(this.healthBarPosX, this.healthBarPosY, this.healthBarWidth, this.healthBarHeight);
+        renderer.fillRect(this.healthBarPosX, this.healthBarPosY, this.healthBarEnemyWidth, this.healthBarHeight);
         this.fontName.draw(renderer,
             this.labelName,
             this.healthBarPosX + 80,
@@ -92,6 +99,14 @@ export class enemyStatsUIContainer extends me.Container {
             this.healthBarPosX + 135,
             this.healthBarPosY + 8
         );
+
+        renderer.drawImage(me.loader.getImage("heart"), -470, 5, 50, 50);
+        
+        renderer.fillRoundRect(this.healthBarPosX - 790, this.healthBarPosY, this.healthBarPlayerWidth, this.healthBarHeight + 5, 2);
+
+        renderer.setColor("black"); 
+        renderer.setLineWidth(5);
+        renderer.strokeRoundRect(this.healthBarPosX - 790, this.healthBarPosY, 80 , this.healthBarHeight + 5, 2);
 
     }
 
