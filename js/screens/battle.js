@@ -1,10 +1,14 @@
 import * as me from 'https://esm.run/melonjs';
 import BattleUIContainer from '../ui/BattleUIContainer.js';
-import { ButtonUI } from '../entities/buttons.js';
+import { ButtonUI } from '/js/entities/buttons.js';
+import { StatsUIContainer } from '/js/ui/StatsBattleUIContainer.js';
 import BattleEnemy from '/js/entities/enemy.js';
-import gameController from '../../index.js';
+import gameController from '/index.js';
 import BattleBehaviours from '/js/entities/battleBehaviour.js';
 import Player from '../entities/player.js';
+
+
+var enemy // FIXME enemy should be passed from overworld
 
 var availableActions = [
     "Attack",
@@ -14,6 +18,7 @@ var availableActions = [
 ]
 
 var enemy;
+var statsPanel;
 
 function logEntitiesHealth() {
     console.log("------Debugger event:------");
@@ -24,18 +29,25 @@ function logEntitiesHealth() {
 
 function playBgAudio() {
     me.audio.playTrack("battle-theme-loop");
-
 }
+
+
+function fillHealth() {
+    statsPanel.scaleEnemyHealth(enemy.maxHealth, enemy.health);
+    statsPanel.scalePlayerHealth(gameController.player.maxHealth, gameController.player.health );
+}
+
 
 export class BattleScreen extends me.Stage {
     onResetEvent(enemyJSON) {
         this.initUserInterface();
         this.initEnemy(enemyJSON);
-        battleController.onload(enemyJSON);
+        battleController.onload();
         this.initBgAudio();
     }
 
     initUserInterface() {
+        // Background Image
         let backgroundImage = new me.Sprite(
             me.game.viewport.width / 2, me.game.viewport.height / 2,
             {
@@ -48,24 +60,30 @@ export class BattleScreen extends me.Stage {
         );
         me.game.world.addChild(backgroundImage, -100);
 
-
         // init ui elements
-        var panel = new BattleUIContainer(
+        var buttonsPanel = new BattleUIContainer(
             10, 650, 1020, 120 // FIXME hardcoded
         );
 
         // FIXME more hardcode
-        panel.addChild(new ButtonUI(90, 40, "blue", availableActions[0]));
-        panel.addChild(new ButtonUI(300, 40, "yellow", availableActions[1]));
-        panel.addChild(new ButtonUI(510, 40, "green", availableActions[2]));
-        panel.addChild(new ButtonUI(720, 40, "red", availableActions[3]));
+        buttonsPanel.addChild(new ButtonUI(90, 40, "blue", availableActions[0]));
+        buttonsPanel.addChild(new ButtonUI(300, 40, "yellow", availableActions[1]));
+        buttonsPanel.addChild(new ButtonUI(510, 40, "green", availableActions[2]));
+        buttonsPanel.addChild(new ButtonUI(720, 40, "red", availableActions[3]));
 
-        me.game.world.addChild(panel, 1);
+        me.game.world.addChild(buttonsPanel, 1);
     }
 
     initEnemy(enemyJSONData) {
         enemy = new BattleEnemy(enemyJSONData);
         console.log(`BattleScreen: A wild ${enemy.name} attacks!!`);
+        statsPanel = new StatsUIContainer(
+            470, 50, 6, 6
+        );
+        statsPanel.setEnemyName(enemy.name);
+        statsPanel.setEnemyHealthText(enemy.health, enemy.health);
+
+        me.game.world.addChild(statsPanel);
     }
 
     initBgAudio() {
@@ -92,6 +110,7 @@ export var battleController = {
         if (this.playerTurn) {
             me.audio.play("button1", false, null, 0.3);
             gameController.player[buttonName.toLowerCase()]();
+            fillHealth(enemy.health);
             logEntitiesHealth();
             this.passTurn();
         } else {
@@ -175,7 +194,7 @@ var enemyController = {
         var attackDefinition = me.loader.getJSON("AttackDefinition");
         var attackFunctions = {
 
-            randomAttack: function (){
+            randomAttack: function () {
                 let attackProbability = Math.floor(Math.random() * Object.keys(enemy.attacks).length);
                 console.log(`${attackProbability} is the attack magic number`);
                 let randomAttackName = enemy.attacks[attackProbability];
@@ -211,6 +230,7 @@ var enemyController = {
     onActionSelected: function (action) {
         enemy[action]();
         logEntitiesHealth();
+        fillHealth(gameController.player.health);
         battleController.passTurn();
     }
 }

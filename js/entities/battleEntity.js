@@ -1,4 +1,7 @@
 export class BattleEntity {
+
+    maxHealth = 100;
+    minHealth = 0;
     attackDamageValue = 0;
     defenseDamageValue = 0;
 

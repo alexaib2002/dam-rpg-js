@@ -33,6 +33,22 @@ export default class Player extends BattleEntity {
         let attackResult = battleController.battleBehaviours.attack(
             gameController.player, battleController.enemy
         );
+        new me.Tween(battleController.enemy.sprite).to({
+            alpha: 0
+        }, {
+            duration: 100,
+            easing: me.Tween.Easing.Linear.None,
+            autoStart: true
+        }).onComplete(() => {
+            new me.Tween(battleController.enemy.sprite).to({
+                alpha: 100
+            }, {
+                duration: 100,
+                easing: me.Tween.Easing.Linear.None,
+                autoStart: true
+            });
+        });
+        me.audio.play("swing", false, null, 0.8);
         if (attackResult != null) {
             console.log(`Battle controller: You defeated ${attackResult.name}`);
             battleController.endBattle("won");
