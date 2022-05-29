@@ -4,6 +4,7 @@ import { ButtonUI } from '../entities/buttons.js';
 import BattleEnemy from '/js/entities/enemy.js';
 import gameController from '../../index.js';
 import BattleBehaviours from '/js/entities/battleBehaviour.js';
+import Player from '../entities/player.js';
 
 var availableActions = [
     "Attack",
@@ -21,11 +22,17 @@ function logEntitiesHealth() {
     console.log("---------------------------");
 }
 
+function playBgAudio() {
+    me.audio.playTrack("battle-theme-loop");
+
+}
+
 export class BattleScreen extends me.Stage {
     onResetEvent(enemyJSON) {
         this.initUserInterface();
         this.initEnemy(enemyJSON);
         battleController.onload(enemyJSON);
+        this.initBgAudio();
     }
 
     initUserInterface() {
@@ -60,6 +67,12 @@ export class BattleScreen extends me.Stage {
         enemy = new BattleEnemy(enemyJSONData);
         console.log(`BattleScreen: A wild ${enemy.name} attacks!!`);
     }
+
+    initBgAudio() {
+        console.log("Battel Audio: I have been initialized")
+        me.audio.play("battle-theme-intro", false, playBgAudio);
+    }
+
 }
 
 export var battleController = {
@@ -77,6 +90,7 @@ export var battleController = {
 
     onActionSelected: function (buttonName) {
         if (this.playerTurn) {
+            me.audio.play("button1", false, null, 0.3);
             gameController.player[buttonName.toLowerCase()]();
             logEntitiesHealth();
             this.passTurn();

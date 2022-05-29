@@ -67,6 +67,13 @@ const DataManifest = [
     { name: "acid-slime", type: "image", src: "/src/sprites/ingame/acid-slime.png" },
     { name: "skeleton-archer", type: "image", src: "/src/sprites/ingame/skeleton-archer.png" },
     { name: "forest-defender", type: "image", src: "/src/sprites/ingame/forest-defender.png" },
+
+    // Sound
+    { name: "battle-theme-intro", type: "audio", src: "src/audio/battle-theme/" },
+    { name: "battle-theme-loop", type: "audio", src: "src/audio/battle-theme/" },
+    { name: "button1", type: "audio", src: "src/audio/ui-effects/" },
+
+
 ];
 
 export default DataManifest;

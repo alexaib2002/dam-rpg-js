@@ -30,7 +30,7 @@ var gameController = {
             alert("Your browser does not support HTML5 canvas.");
             return;
         }
-
+        me.audio.init("wav");
         me.loader.preload(DataManifest, () => {
             me.pool.register("EntPlayer", OverworldPlayer);
             me.pool.register("EntEnemySpawn", EnemySpawn);
