@@ -1,7 +1,7 @@
 // validacion hecha con copilot, placeholder
 function validateForm() {
     
-    var x = document.forms["form"]["nickname"].value;
+    var x = document.forms["form"]["nName"].value;
     if (x == "") {
         alert("Name must be filled out");
         return false;
@@ -19,7 +19,7 @@ function validateForm() {
         return false;
     }
 
-    // check for only 1 checkbox checked and no more than 1
+    // check for only 1 checkbox checked and no more than 1 
     var checkboxes = document.getElementsByName('playertype');
     var checked = false;
     for (var i = 0; i < checkboxes.length; i++) {
