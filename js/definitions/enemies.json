@@ -3,54 +3,73 @@
 		"name": "Zombie",
 		"health": 100,
 		"attacks": ["bash", "kick"],
-		"sprite": "zombie"
+		"sprite": "zombie",
+		"scaleFactor": 0.85,
+		"defenseval" : 5
 	},
 	"enemy_01": {
 		"name": "Slime",
 		"health": 45,
 		"attacks": ["bash"],
-		"sprite": "slime"
+		"sprite": "slime",
+		"scaleFactor": 0.25,
+		"defenseval" : 5
 	},
 
 	"enemy_02": {
 		"name": "Skeleton",
 		"health": 75,
 		"attacks": ["cut"],
-		"sprite": "skeleton"
+		"sprite": "skeleton",
+		"scaleFactor": 0.85,
+		"defenseval" : 5
 	},
 
 	"enemy_03": {
 		"name": "Goblin",
 		"health": 50,
 		"attacks": ["punch"],
-		"sprite": "goblin"
+		"sprite": "goblin",
+		"scaleFactor": 0.85,
+		"defenseval" : 5
 	},
 
 	"enemy_04": {
-		"name": "Armored Zombie",
+		"name": "Ghost",
 		"health": 150,
-		"attacks": ["bash", "kick", "slash"],
-		"sprite": "armored-zombie"
+		"attacks": ["bash", "kick"],
+		"sprite": "ghost",
+		"defenseval" : 5
 	},
 
 	"enemy_05": {
 		"name": "Acid Slime",
 		"health": 70,
 		"attacks": ["spit", "bash"],
-		"sprite": "acid-slime"
+		"sprite": "acid-slime",
+		"scaleFactor": 0.85,
+		"defenseval" : 5
 	},
 
 	"enemy_06": {
 		"name": "Skeleton Archer",
 		"health": 100,
 		"attacks": ["shoot", "bash"],
-		"sprite": "skeleton-archer"
+		"sprite": "skeleton-archer",
+		"scaleFactor": 0.85,
+		"defenseval" : 5
 	},
 
 	"enemy_07": {
 		"name": "Forest defender",
 		"health": 300,
 		"attacks": ["bash", "kick", "slash", "spit"],
-		"sprite": "forest-defender"
+		"sprite": "forest-defender",
+		"scaleFactor": 3,
+		"offset": {
+			"x": 0,
+			"y": 80
+		},
+		"defenseval" : 5
 	}
 }

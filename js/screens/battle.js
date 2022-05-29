@@ -5,14 +5,14 @@ import BattleEnemy from '/js/entities/enemy.js';
 import gameController from '../../index.js';
 import BattleBehaviours from '/js/entities/battleBehaviour.js';
 
-var enemy // FIXME enemy should be passed from overworld
-
 var availableActions = [
     "Attack",
     "Defend",
     "Recover",
     "Flee"
 ]
+
+var enemy;
 
 function logEntitiesHealth() {
     console.log("------Debugger event:------");
@@ -22,11 +22,10 @@ function logEntitiesHealth() {
 }
 
 export class BattleScreen extends me.Stage {
-
-    onResetEvent() {
+    onResetEvent(enemyJSON) {
         this.initUserInterface();
-        this.initEnemies();
-        battleController.onload();
+        this.initEnemy(enemyJSON);
+        battleController.onload(enemyJSON);
     }
 
     initUserInterface() {
@@ -40,7 +39,7 @@ export class BattleScreen extends me.Stage {
             me.game.viewport.width / backgroundImage.width,
             me.game.viewport.height / backgroundImage.height
         );
-        me.game.world.addChild(backgroundImage, 0);
+        me.game.world.addChild(backgroundImage, -100);
 
 
         // init ui elements
@@ -57,25 +56,15 @@ export class BattleScreen extends me.Stage {
         me.game.world.addChild(panel, 1);
     }
 
-    initEnemies() {
-        let placeholder_enemy_data = me.loader.getJSON("EnemyDefinition").enemy_00;
-        placeholder_enemy_data.defenseval = 5; // FIXME hardcoded defense value
-        enemy = new BattleEnemy(placeholder_enemy_data, 5); // FIXME hardcoded defense
+    initEnemy(enemyJSONData) {
+        enemy = new BattleEnemy(enemyJSONData);
         console.log(`BattleScreen: A wild ${enemy.name} attacks!!`);
-        console.log(enemy);
-        me.game.world.addChild(new me.Sprite(
-            me.game.viewport.width / 2, me.game.viewport.height / 2,
-            {
-                image: me.loader.getImage(enemy.sprite),
-            }
-        ))
-        enemyController.onload(enemy);
     }
 }
 
 export var battleController = {
-
     playerTurn: false,
+    battleEnded: false,
 
     // battle classes
     battleBehaviours: new BattleBehaviours(),
@@ -83,7 +72,7 @@ export var battleController = {
     onload: function () {
         console.log("Battle controller: I have been initialized");
         this.passTurn();
-        this.enemy = enemy; // FIXME ugly code, should be passed from overworld to battleController constructor
+        this.enemy = enemy;
     },
 
     onActionSelected: function (buttonName) {
@@ -97,21 +86,36 @@ export var battleController = {
     },
 
     passTurn: function () {
-        this.playerTurn ? this.playerTurn = false : this.playerTurn = true;
-        console.log(`Battle controller: Player turn -> ${this.playerTurn}`);
-        if (!this.playerTurn) {
-            enemyController.onTurnReceived();
+        if (!this.battleEnded) {
+            this.playerTurn ? this.playerTurn = false : this.playerTurn = true;
+            console.log(`Battle controller: Player turn -> ${this.playerTurn}`);
+            if (!this.playerTurn) {
+                enemyController.onTurnReceived();
+            }
         }
+    },
+
+    endBattle: function (reason) {
+        console.log(`Battle controller: Battle ended: ${reason}`);
+        switch (reason) {
+            case "fled":
+                me.state.change(gameController.STATE_OVERWORLD, true);
+                break;
+            case "won":
+                me.state.change(gameController.STATE_OVERWORLD, true);
+                break;
+            case "defeated":
+                me.state.change(gameController.STATE_END, "Enemy won");
+                break;
+            default:
+                console.log("Battle controller: Unknown battle end reason");
+                break;
+        }
+        this.battleEnded = true;
     }
 }
 
 var enemyController = {
-    enemy: null,
-
-    onload: function (enemy) {
-        this.enemy = enemy;
-    },
-
     onTurnReceived: function () {
         // TODO determine what action enemy should take
         console.log("Enemy controller: Received the turn");
@@ -175,7 +179,6 @@ var enemyController = {
             }
 
         }
-
         console.log(Object.keys(enemy.attacks).length)
         if (clever) { // determine attack based on getting highest damage value
             console.log("Enemy controller: I'm clever");

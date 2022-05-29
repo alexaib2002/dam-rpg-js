@@ -18,10 +18,14 @@ export default class Player extends BattleEntity {
                 },
                 sprite: "player",
                 defenseval: "10"
-            }, 5
+            }
         );
         this.level = 1;
         this.exp = 0;
+        this.pos = {
+            x: 0,
+            y: 0
+        }
     }
 
     attack() {
@@ -31,7 +35,7 @@ export default class Player extends BattleEntity {
         );
         if (attackResult != null) {
             console.log(`Battle controller: You defeated ${attackResult.name}`);
-            me.state.change(gameController.STATE_END, "Player won");
+            battleController.endBattle("won");
         }
     }
 
@@ -47,7 +51,8 @@ export default class Player extends BattleEntity {
     }
 
     flee() {
-        battleController.battleBehaviours.flee();
+        console.log("You fled!");
+        battleController.endBattle("fled");
     }
 
 }

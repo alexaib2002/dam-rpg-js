@@ -4,9 +4,24 @@ import { battleController } from "/js/screens/battle.js";
 import BattleEntity from "/js/entities/battleEntity.js";
 
 export default class BattleEnemy extends BattleEntity {
-    constructor(definition, defense) {
-        super(definition, defense);
+    constructor(definition) {
+        super(definition);
+        let offset = definition.offset || {
+            "x": 0,
+            "y": 0
+        };
 
+        let enemySprite = new me.Sprite(
+            me.game.viewport.width / 2 + offset.x,
+            me.game.viewport.height / 2 + offset.y,
+            {
+                image: me.loader.getImage(this.sprite),
+            });
+        enemySprite.scale(
+            definition.scaleFactor,
+            definition.scaleFactor,
+        );
+        me.game.world.addChild(enemySprite, 0);
     }
 
     attack() {
@@ -15,7 +30,7 @@ export default class BattleEnemy extends BattleEntity {
         );
         if (attackResult != null) {
             console.log(`Enemy controller: You have lost to ${attackResult.name}`);
-            me.state.change(gameController.STATE_END, "Enemy won");
+            battleController.endBattle("defeated");
         }
     }
 
