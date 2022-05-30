@@ -28,7 +28,7 @@ function logEntitiesHealth() {
 }
 
 
-function fillHealth() {
+function updateHealthBars() {
     statsPanel.scaleEnemyHealth(enemy.maxHealth, enemy.health);
     statsPanel.scalePlayerHealth(gameController.player.maxHealth, gameController.player.health );
 }
@@ -94,23 +94,26 @@ export class BattleScreen extends me.Stage {
 }
 
 export var battleController = {
-    playerTurn: false,
-    battleEnded: false,
+    playerTurn: undefined,
+    battleEnded: undefined,
 
     // battle classes
     battleBehaviours: new BattleBehaviours(),
 
     onload: function () {
+        updateHealthBars();
         console.log("Battle controller: I have been initialized");
         this.passTurn();
         this.enemy = enemy;
+        this.battleEnded = false;
+        this.playerTurn = true;
     },
 
     onActionSelected: function (buttonName) {
         if (this.playerTurn) {
             me.audio.play("button1", false, null, 0.3);
             gameController.player[buttonName.toLowerCase()]();
-            fillHealth(enemy.health);
+            updateHealthBars();
             logEntitiesHealth();
             this.passTurn();
         } else {
@@ -233,7 +236,7 @@ var enemyController = {
     onActionSelected: function (action) {
         enemy[action]();
         logEntitiesHealth();
-        fillHealth(gameController.player.health);
+        updateHealthBars();
         battleController.passTurn();
     }
 }
