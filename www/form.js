@@ -46,6 +46,10 @@ $(document).ready(function () {
             alert("You must select at least one player type");
             return false;
         }
+
+        else {
+            alert("The player have been registered");
+        }
     });
 
 });
