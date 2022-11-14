@@ -1,4 +1,4 @@
-import * as me from "https://esm.run/melonjs";
+import * as me from '../../../lib/melonjs.module.js';
 import gameController from "/index.js";
 import { battleController } from "/js/screens/battle.js";
 import BattleEntity from "/js/entities/battleEntity.js";

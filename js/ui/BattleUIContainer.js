@@ -1,4 +1,4 @@
-import * as me from 'https://esm.run/melonjs';
+import * as me from '../../lib/melonjs.module.js';
 import gameController from '/index.js';
 
 class BattleUIContainer extends me.Container {

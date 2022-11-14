@@ -1,4 +1,4 @@
-import * as me from 'https://esm.run/melonjs';
+import * as me from '../../lib/melonjs.module.js';
 
 export class StatsUIContainer extends me.Container {
     constructor(x, y, width, height) {
@@ -82,7 +82,7 @@ export class StatsUIContainer extends me.Container {
 
     }
 
-    
+
 
     draw(renderer) {
         super.draw(renderer);
@@ -101,10 +101,10 @@ export class StatsUIContainer extends me.Container {
         );
 
         renderer.drawImage(me.loader.getImage("heart"), -470, 5, 50, 50);
-        
+
         renderer.fillRoundRect(this.healthBarPosX - 790, this.healthBarPosY, this.healthBarPlayerWidth, this.healthBarHeight + 5, 2);
 
-        renderer.setColor("black"); 
+        renderer.setColor("black");
         renderer.setLineWidth(5);
         renderer.strokeRoundRect(this.healthBarPosX - 790, this.healthBarPosY, 80 , this.healthBarHeight + 5, 2);
 

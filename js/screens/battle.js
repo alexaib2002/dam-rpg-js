@@ -1,4 +1,4 @@
-import * as me from 'https://esm.run/melonjs';
+import * as me from '../../../lib/melonjs.module.js';
 import BattleUIContainer from '../ui/BattleUIContainer.js';
 import { ButtonUI } from '/js/entities/buttons.js';
 import { StatsUIContainer } from '/js/ui/StatsBattleUIContainer.js';

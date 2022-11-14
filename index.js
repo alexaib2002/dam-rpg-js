@@ -1,4 +1,4 @@
-import * as me from "https://esm.run/melonjs";
+import * as me from '/lib/melonjs.module.js';
 import { BattleScreen } from "/js/screens/battle.js";
 import EndScreen from '/js/screens/placeholderEnd.js';
 import OverworldScreen from "/js/screens/overworld.js";
