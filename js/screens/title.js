@@ -1,4 +1,4 @@
-import * as me from '../../../lib/melonjs.module.js';
+import * as me from '../../lib/melonjs.module.js';
 import gameController from "../../index.js";
 
 const bgSpeedFactor = .2;

@@ -1,4 +1,4 @@
-import * as me from '../../../lib/melonjs.module.js';
+import * as me from '../../lib/melonjs.module.js';
 
 export default class OverworldScreen extends me.Stage {
 
