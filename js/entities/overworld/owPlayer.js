@@ -1,5 +1,5 @@
 import * as me from '../../../../lib/melonjs.module.js';
-import gameController from "/index.js";
+import gameController from "../../../index.js";
 
 const smoothness = 0.4;
 

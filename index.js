@@ -1,13 +1,13 @@
-import * as me from '/lib/melonjs.module.js';
-import { BattleScreen } from "/js/screens/battle.js";
-import EndScreen from '/js/screens/placeholderEnd.js';
-import OverworldScreen from "/js/screens/overworld.js";
-import TitleScreen from "/js/screens/title.js";
-import DataManifest from "/js/resources.js";
-import EnemySpawn from "/js/entities/overworld/enemySpawn.js";
-import Player from "/js/entities/player.js";
+import * as me from './lib/melonjs.module.js';
+import { BattleScreen } from "./js/screens/battle.js";
+import EndScreen from './js/screens/placeholderEnd.js';
+import OverworldScreen from "./js/screens/overworld.js";
+import TitleScreen from "./js/screens/title.js";
+import DataManifest from "./js/resources.js";
+import EnemySpawn from "./js/entities/overworld/enemySpawn.js";
+import Player from "./js/entities/player.js";
 
-import OverworldPlayer from "/js/entities/overworld/owPlayer.js";
+import OverworldPlayer from "./js/entities/overworld/owPlayer.js";
 
 
 me.device.onReady(function() {

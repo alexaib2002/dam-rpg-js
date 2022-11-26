@@ -1,7 +1,7 @@
 import * as me from '../../../lib/melonjs.module.js';
-import gameController from "/index.js";
-import { battleController } from "/js/screens/battle.js";
-import BattleEntity from "/js/entities/battleEntity.js";
+import gameController from "../../index.js";
+import { battleController } from "../screens/battle.js";
+import BattleEntity from "../entities/battleEntity.js";
 
 export default class Player extends BattleEntity {
     constructor() {

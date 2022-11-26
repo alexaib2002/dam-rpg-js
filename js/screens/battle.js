@@ -1,14 +1,12 @@
 import * as me from '../../../lib/melonjs.module.js';
 import BattleUIContainer from '../ui/BattleUIContainer.js';
-import { ButtonUI } from '/js/entities/buttons.js';
-import { StatsUIContainer } from '/js/ui/StatsBattleUIContainer.js';
-import BattleEnemy from '/js/entities/enemy.js';
-import gameController from '/index.js';
-import BattleBehaviours from '/js/entities/battleBehaviour.js';
-import Player from '../entities/player.js';
+import { ButtonUI } from '../entities/buttons.js';
+import { StatsUIContainer } from '../ui/StatsBattleUIContainer.js';
+import BattleEnemy from '../entities/enemy.js';
+import gameController from '../../index.js';
+import BattleBehaviours from '../entities/battleBehaviour.js';
 
-
-var enemy // FIXME enemy should be passed from overworld
+var enemy
 
 var availableActions = [
     "Attack",

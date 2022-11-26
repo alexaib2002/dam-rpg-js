@@ -1,6 +1,6 @@
 import * as me from '../../../lib/melonjs.module.js';
-import gameController from '/index.js';
-import { battleController } from '/js/screens/battle.js';
+import gameController from '../../index.js';
+import { battleController } from '../screens/battle.js';
 
 export class ButtonUI extends me.GUI_Object {
 
