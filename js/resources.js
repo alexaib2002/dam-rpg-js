@@ -14,7 +14,7 @@ const DataManifest = [
     { name: "UI_Assets-1", type: "json", src: "/dam-rpg-js/src/img/UI_Assets-1.json" },
     { name: "UI_Assets-2", type: "json", src: "/dam-rpg-js/src/img/UI_Assets-2.json" },
 
-    { name: "'kenpixel'", type: "fontface",  src: "url('../src/font/kenvector_future.woff2')" },
+    { name: "'kenpixel'", type: "fontface",  src: "url('/dam-rpg-js/src/font/kenvector_future.woff2')" },
 
     // Rooms source
     { name: "tiles", type: "image", src: "/dam-rpg-js/src/tilemap/source/MiniPack/tiles.png" },
